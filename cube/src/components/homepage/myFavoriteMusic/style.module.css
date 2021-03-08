@@ -1,0 +1,70 @@
+.container{
+  margin-top: 30rem;
+  height: 12.5vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  border-radius: 10rem;
+  background-color: #19191B;
+}
+
+.avatar{
+  width: 100rem;
+  height: 100rem;
+  background: url('../../../assets/img/homepage-heart-background-ic.png') no-repeat center center ;
+  border-radius: 10rem;
+  margin-left: 30rem;
+}
+
+.mask{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+}
+
+.heart{
+  color: #B2B2B2;
+  font-size: 40rem;
+}
+
+.content{
+  margin-left: 20rem;
+  width: 330rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.text{
+  margin: 20rem 0 0 0;
+  width: 500rem;
+  text-align: left;
+  font-family: 'PingFang Bold';
+  font-size: 28rem;
+  color: #595B5B;
+}
+
+.num{
+  font-family: 'PingFang Regular';
+  font-size: 12rem;
+  color: #3C3C3C;
+}
+
+.tag{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-width: 3rem;
+  border-radius: 20rem;
+  border-color: #1E1F20;
+}
+
+.tagText{
+  margin: 0 0 0 10rem;
+  font-family: 'PingFang Regular';
+}

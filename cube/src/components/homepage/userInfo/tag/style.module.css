@@ -1,0 +1,7 @@
+.tag{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20rem;
+  font-family: 'PingFangSC-Regular';
+}

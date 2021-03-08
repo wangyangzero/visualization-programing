@@ -1,0 +1,23 @@
+.container{
+  height: 8vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.splitLine{
+  display: inline-block;
+  width: 20vw;
+  border-top: 3rem solid #5A5A5A ;
+}
+
+.text{
+  display: inline-block;
+  margin: 0rem 5rem 0 5rem;
+  width: 40vw;
+  color: #5A5A5A;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+}

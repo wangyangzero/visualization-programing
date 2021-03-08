@@ -1,0 +1,1 @@
+export const rem = (num: number): string => `${num}rem`;

@@ -1,0 +1,13 @@
+.container{
+  height: 25vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 40rem;
+  border-radius: 10rem;
+  background-color: #19191B;
+}
+
+.channel{
+  margin-left: 500rem;
+}
