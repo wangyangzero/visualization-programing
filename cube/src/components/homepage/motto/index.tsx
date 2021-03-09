@@ -1,3 +1,4 @@
+/** 格言模块 */
 import React, { memo, useState } from 'react';
 import { Divider } from 'antd';
 import styles from './style.module.css'

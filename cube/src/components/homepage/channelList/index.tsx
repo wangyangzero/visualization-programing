@@ -1,10 +1,10 @@
+/** 首页频道入口 */
 import React, { memo, useState } from 'react';
 import iconCollect from 'src/assets/img/homepage-collect-ic.png';
 import iconDownLoad from 'src/assets/img/homepage-download-ic.png';
 import iconFriend from 'src/assets/img/homepage-friend-ic.png';
 import iconHistory from 'src/assets/img/homepage-history-ic.png';
 import iconLike from 'src/assets/img/homepage-like-ic.png';
-/** 首页频道入口 */
 import iconLocal from 'src/assets/img/homepage-local-ic.png';
 import iconCloud from 'src/assets/img/homepage-cloud-ic.png';
 import Channel from './channel';

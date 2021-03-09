@@ -3,8 +3,8 @@ import React, { memo, useState } from 'react';
 import { Tag } from 'antd';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import { IMyFavoriteMusicState } from 'src/type/homepage';
-import styles from './style.module.css';
 import { rem } from 'src/common';
+import styles from './style.module.css';
 
 const MyFavoriteMusic = () => {
   const initState: IMyFavoriteMusicState = {

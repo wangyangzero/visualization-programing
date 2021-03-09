@@ -10,24 +10,22 @@
 }
 
 .avatar{
-  width: 100rem;
-  height: 100rem;
   background: url('../../../assets/img/homepage-heart-background-ic.png') no-repeat center center ;
   border-radius: 10rem;
   margin-left: 30rem;
 }
 
 .mask{
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10rem;
   background-color: rgba(0, 0, 0, 0.4);
-  height: 100%;
 }
 
 .heart{
   color: #B2B2B2;
-  font-size: 40rem;
 }
 
 .content{
@@ -44,14 +42,10 @@
   width: 500rem;
   text-align: left;
   font-family: 'PingFang Bold';
-  font-size: 28rem;
-  color: #595B5B;
 }
 
 .num{
   font-family: 'PingFang Regular';
-  font-size: 12rem;
-  color: #3C3C3C;
 }
 
 .tag{

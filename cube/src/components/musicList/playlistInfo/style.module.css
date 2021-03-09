@@ -1,0 +1,55 @@
+.container{
+  height: 22vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  border-radius: 20rem;
+}
+
+.avatar{
+  background: url('../../../assets/img/homepage-heart-background-ic.png') no-repeat center center ;
+  border-radius: 20rem;
+  margin-left: 30rem;
+}
+
+.mask{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+}
+
+.heart{
+  color: #B2B2B2;
+}
+
+.content{
+  margin: -70rem 0 0 40rem;
+  width: 330rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.text{
+  margin: 0;
+  width: 500rem;
+  text-align: left;
+  font-family: 'PingFang Bold';
+}
+
+.username{
+  margin-top: 20rem;
+  font-family: 'PingFang Regular';
+}
+
+.userIcon{
+  border-radius: 4rem;
+}
+
+.userText{
+  margin-left: 20rem;
+}

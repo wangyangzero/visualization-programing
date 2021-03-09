@@ -1,0 +1,18 @@
+.container{
+  height: 8vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.text{
+  margin-left: 30rem;
+}
+
+.search{
+  margin-left: 430rem;
+}
+
+.more{
+  margin-left: 40rem;
+}

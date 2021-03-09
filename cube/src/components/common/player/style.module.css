@@ -1,0 +1,39 @@
+.container{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 8vh;
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  background-color: #161719;
+}
+
+.avatar{
+  margin-left: 30rem;
+  background: url('../../../assets/img/player-tape-ic.png') no-repeat center center ;
+  border-radius: 50%;
+}
+
+.inlineIcon{
+  margin: 16rem 0 0 16rem;
+  background: url('../../../assets/img/homepage-heart-background-ic.png') no-repeat center center ;
+  border-radius: 50%;
+}
+
+.title{
+  margin: 0 0 0 20rem;
+  font-family: 'PingFang Bold';
+  vertical-align: middle;
+}
+
+.author{
+  margin: 0;
+  font-family: 'PingFang Regular';
+  vertical-align: middle;
+}
+
+.pauseIcon{
+  margin-left: 160rem;
+}

@@ -9,19 +9,17 @@ const routes = [
     component: Homepage
   },
   {
-    path: '/music/info',
-    component: MusicInfo,
-    routes: [
-      {
-        path: '/music/list',
-        component: MusicList
-      },
-      {
-        path: '/review',
-        component: Review
-      }
-    ]
-  }
+    path: 'music/info',
+    component: MusicInfo
+  },
+  {
+    path: '/music/list',
+    component: MusicList
+  },
+  {
+    path: '/review',
+    component: Review
+  },
 ];
 
 export default routes;
