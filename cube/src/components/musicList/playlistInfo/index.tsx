@@ -6,7 +6,7 @@ import { rem } from 'src/common';
 import userIcon from 'src/assets/img/homepage-heart-background-ic.png';
 import styles from './style.module.css';
 
-const PlayListInfo = () => {
+const PlaylistInfo = () => {
   const initState: IPlayListInfoState = {
     avatarSize: 220,
     avatarUrl: '',
@@ -67,4 +67,4 @@ const PlayListInfo = () => {
   )
 }
 
-export default memo(PlayListInfo)
+export default memo(PlaylistInfo)

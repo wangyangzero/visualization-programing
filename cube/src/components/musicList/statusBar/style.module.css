@@ -1,8 +1,14 @@
 .container{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
   height: 8vh;
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding: 0 30rem 0 30rem;
+  background-color: #19191B;
 }
 
 .text{

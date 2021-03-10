@@ -1,0 +1,6 @@
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30rem 30rem 0rem 30rem;
+}
+

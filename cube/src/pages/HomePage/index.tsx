@@ -23,7 +23,7 @@ const songSheet = [
 
 export default function Homepage(): unknown {
   return (
-    <>
+    <div className={styles.container}>
       <section><UserInfo /></section>
       <section><ChannelList /></section>
       <section><MyFavoriteMusic/></section>
@@ -32,6 +32,6 @@ export default function Homepage(): unknown {
       <section><SongSheetList key='collect' name='收藏歌单' songSheet={songSheet}/></section>
       <section><Player/></section>
       <footer className={styles.footer}></footer>
-    </>
+    </div>
   );
 }

@@ -1,26 +1,26 @@
 .container{
-  height: 8vh;
+  margin-top: 20rem;
   padding: 0 30rem 0 30rem;
+  height: 8vh;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.content{
-  width: 600rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.name{
+.text{
+  margin-left: 30rem;
   font-family: 'PingFang Bold';
 }
 
-.singer{
+.num{
+  margin-left: 20rem;
   font-family: 'PingFang Regular';
 }
 
-.shareIcon{
-  margin-left: 10rem;
+.downloadIcon{
+  margin-left: 312rem;
+}
+
+.checkIcon{
+  margin-left: 40rem;
 }

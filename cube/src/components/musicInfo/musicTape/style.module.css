@@ -1,0 +1,21 @@
+.container{
+  height: 54vh;
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: center;
+  background-color: #161719;
+}
+
+.avatar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../../../assets/img/music-info-tape.png') no-repeat center center ;
+  border-radius: 50%;
+}
+
+.inlineIcon{
+  background: greenyellow no-repeat center center ;
+  border-radius: 50%;
+}

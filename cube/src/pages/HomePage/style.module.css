@@ -1,3 +1,9 @@
+.container{
+  height: 100%;
+  padding: 30rem 30rem 0 30rem;
+  background-color: #161616;
+}
+
 .footer{
   height: 11vh;
 }
