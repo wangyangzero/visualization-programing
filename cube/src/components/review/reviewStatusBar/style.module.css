@@ -1,0 +1,24 @@
+.container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.title{
+  font-family: 'PingFang Bold';
+}
+
+.recommend{
+  font-family: 'PingFang Bold';
+  margin-left: 380rem;
+}
+
+.hot{
+  font-family: 'PingFang Bold';
+  margin-left: 40rem;
+}
+
+.new{
+  font-family: 'PingFang Bold';
+  margin-left: 40rem;
+}

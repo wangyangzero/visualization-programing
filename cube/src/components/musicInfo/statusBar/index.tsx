@@ -1,3 +1,4 @@
+/** 顶部的状态栏信息 */
 import React, { memo, useState } from 'react';
 import { IStatusBarState } from 'src/type/musicInfo';
 import { DownOutlined, ShareAltOutlined } from '@ant-design/icons';

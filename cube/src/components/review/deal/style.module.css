@@ -1,0 +1,37 @@
+.container{
+  margin-top: 80rem;
+  height: 12vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.avatar{
+  background: url('../../../assets/img/homepage-heart-background-ic.png') no-repeat center center ;
+  border-radius: 10rem;
+}
+
+.content{
+  margin-left: 20rem;
+  width: 330rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.text{
+  margin: 20rem 0 0 0;
+  width: 500rem;
+  text-align: left;
+  font-family: 'PingFang Bold';
+}
+
+.num{
+  font-family: 'PingFang Regular';
+}
+
+.icon{
+  margin-left: 180rem;
+}

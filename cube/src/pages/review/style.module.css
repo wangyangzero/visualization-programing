@@ -1,0 +1,12 @@
+.container{
+  padding: 30rem 30rem 0 30rem;
+  background-color: #161616;
+}
+
+.header{
+  height: 8vh;
+}
+
+.footer{
+  height: 8vh;
+}

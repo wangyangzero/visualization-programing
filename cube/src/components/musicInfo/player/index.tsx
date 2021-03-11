@@ -1,3 +1,4 @@
+/** 底部的播放模块 */
 import React, { memo, useState } from 'react';
 import { rem } from 'src/common';
 import { Progress } from 'antd';
@@ -28,11 +29,11 @@ const Player = () => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <HeartOutlined style={{ color: iconColor, fontSize:rem(48) }} className={styles.headerIcon}/>
-        <DownloadOutlined style={{ color: iconColor, fontSize:rem(48) }} className={styles.headerIcon}/>
-        <BellOutlined style={{ color: iconColor, fontSize:rem(48) }} className={styles.headerIcon}/>
-        <MessageOutlined style={{ color: iconColor, fontSize:rem(48) }} className={styles.headerIcon}/>
-        <MoreOutlined style={{ color: iconColor, fontSize:rem(48) }} className={styles.headerIcon}/>
+        <HeartOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.headerIcon}/>
+        <DownloadOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.headerIcon}/>
+        <BellOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.headerIcon}/>
+        <MessageOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.headerIcon}/>
+        <MoreOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.headerIcon}/>
       </header>
       <div className={styles.content}>
         <span style={{ fontSize: rem(timerFontSize), color: timerColor }} className={styles.timerText}>
@@ -51,11 +52,11 @@ const Player = () => {
         </span>
       </div>
       <footer className={styles.footer}>
-        <RedoOutlined style={{ color: iconColor, fontSize:rem(48) }} className={styles.footerIcon}/>
-        <StepBackwardOutlined style={{ color: iconColor, fontSize:rem(48) }} className={styles.footerIcon}/>
-        <PlayCircleOutlined style={{ color: iconColor, fontSize:rem(100) }} className={styles.footerIcon}/>
-        <StepForwardOutlined style={{ color: iconColor, fontSize:rem(48) }} className={styles.footerIcon}/>
-        <MenuFoldOutlined style={{ color: iconColor, fontSize:rem(48) }} className={styles.footerIcon}/>
+        <RedoOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.footerIcon}/>
+        <StepBackwardOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.footerIcon}/>
+        <PlayCircleOutlined style={{ color: iconColor, fontSize:rem(80) }} className={styles.footerIcon}/>
+        <StepForwardOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.footerIcon}/>
+        <MenuFoldOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.footerIcon}/>
       </footer>
     </div>
   )

@@ -2,8 +2,23 @@
 /* 引入UI库样式 */
 @import '~antd/dist/antd.css';
 
+/* 修改ant design 默认样式 */
+.ant-input::-webkit-input-placeholder {
+  color: #3A3C40!important;
+}
+.ant-input:-ms-input-placeholder {
+  color: #3A3C40!important;
+}
+.ant-input::-ms-input-placeholder {
+  color: #3A3C40!important;
+}
+.ant-input::placeholder {
+  color: #3A3C40!important;
+}
+
 .container {
   margin: 0;
+  height: 100%;
   text-align: center;
   background-color: #161616;
 }

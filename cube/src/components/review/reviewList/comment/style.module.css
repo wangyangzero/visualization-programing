@@ -1,0 +1,54 @@
+.container{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.avatar{
+  border-radius: 50%;
+}
+
+.header{
+  width: 100%;
+  height: 8vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.userInfo{
+  margin-left: 20rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.username{
+  font-family: 'PingFang Bold';
+}
+
+.date{
+  font-family: 'PingFang Regular';
+}
+
+.likes{
+  margin-left: 320rem;
+}
+
+.content{
+  margin: 0 0 0 92rem;
+  width: 300rem;
+}
+
+.msg{
+  margin: 0;
+  width: 600rem;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-align: start;
+}
+
+.reply{
+  margin-top: 10rem;
+  width: 300rem;
+  text-align: start;
+}

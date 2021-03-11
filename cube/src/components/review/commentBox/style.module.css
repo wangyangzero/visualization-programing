@@ -1,7 +1,7 @@
 .container{
   position: fixed;
   left: 0;
-  top: 0;
+  bottom: 0;
   width: 100vw;
   height: 8vh;
   display: flex;
@@ -12,10 +12,6 @@
 }
 
 .text{
-  margin-left: 40rem;
-  font-family: 'PingFang Bold'
-}
-
-.shareIcon{
-  margin-left: 440rem;
+  margin-left: 20rem;
+  font-family: 'PingFang Medium';
 }

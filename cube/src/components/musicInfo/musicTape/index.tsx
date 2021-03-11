@@ -1,3 +1,4 @@
+/** 中间的磁带模块 */
 import React, { memo, useState } from 'react';
 import { IMusicTapeState } from 'src/type/musicInfo';
 import { rem } from 'src/common';
