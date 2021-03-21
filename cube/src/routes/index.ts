@@ -9,7 +9,7 @@ const routes = [
     component: Homepage
   },
   {
-    path: '/music/info',
+    path: '/music/info=:id',
     component: MusicInfo
   },
   {

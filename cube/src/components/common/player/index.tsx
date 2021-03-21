@@ -5,11 +5,11 @@ import { IPlayerState } from 'src/type/homepage';
 import { Progress } from 'antd';
 import { MenuUnfoldOutlined, CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
 import musicSource from 'src/assets/music/candy_wind.mp3';
+import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
 const Player = () => {
   const timerId = useRef(-1);
-  const a = document.getElementById('audio');
   const initState: IPlayerState = {
     avatarSize: 80,
     inlineIconSize: 48,
@@ -22,6 +22,8 @@ const Player = () => {
     iconColor: '#3C3C3C',
   }
   const [state, setState] = useState(initState);
+  //  模块背景色
+  const [backgroundColor, setBackgroundColor] = useState('#161719');
   // 设置头像旋转的初始位置
   const [rotatePos, setRotatePos] = useState(0); 
   // 音乐的播放开关
@@ -45,8 +47,8 @@ const Player = () => {
    */
   const animationPlay = () => {
     setMusicSwitch(true);
-    const audio = document.getElementById('audio');
-    (audio as any).play();
+    const audio: any = document.getElementById('audio');
+    audio.play();
     // 头像旋转动画开启
     timerId.current = requestAnimationFrame(avatarRotate);
   }
@@ -73,29 +75,59 @@ const Player = () => {
     const audio: any= document.getElementById('audio');
     setMusicProgress(audio.currentTime * 100 / audio.duration);
   }
+  /**
+   * 触摸组件按下
+   */
+  const onTouchStart = () => {
+    setBackgroundColor('#2B2C2E');
+  }
+  /**
+   * 触摸组件弹起
+   */
+  const onTouchEnd = () => {
+    setBackgroundColor('#161719');
+  }
 
   useEffect(() => {
-    // animationPlay();
+    // 清除头像旋转定时器
     return () => cancelAnimationFrame(timerId.current);
   },[])
 
 
   return (
-    <div className={styles.container}>
-      <div 
+    <div className={styles.container} style={{ backgroundColor }}>
+      <div
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
         className={styles.avatar} 
         style={{ width: rem(avatarSize), height: rem(avatarSize), transform: `rotate(${rotatePos}deg)` }}>
-        <div 
-          className={styles.inlineIcon} 
-          style={{ width: rem(inlineIconSize), height: rem(inlineIconSize) }} 
-        />        
+        <Link to='/music/info=2333'>
+          <div 
+            className={styles.inlineIcon} 
+            style={{ width: rem(inlineIconSize), height: rem(inlineIconSize) }} 
+          />
+        </Link>      
       </div>
-      <p style={{ fontSize: rem(titleFontSize), color: titleColor }} className={styles.title}>
-        {title}
-      </p>
-      <p style={{ fontSize: rem(authorFontSize), color: authorColor }} className={styles.author}>
-        {`~  ${author}`}
-      </p>
+
+
+      <Link to='/music/info=2333'>
+        <p 
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+          style={{ fontSize: rem(titleFontSize), color: titleColor }} 
+          className={styles.title}>
+            {title}
+        </p>
+      </Link>
+      <Link to='/music/info=2333'>
+        <p
+          onTouchStart={onTouchStart} 
+          onTouchEnd={onTouchEnd}
+          style={{ fontSize: rem(authorFontSize), color: authorColor }} 
+          className={styles.author}>
+            {`~  ${author}`}
+        </p>
+      </Link>
       <Progress 
         type="circle" 
         percent={musicProgress} 

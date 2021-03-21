@@ -3,6 +3,7 @@ import React, { memo, useState } from 'react';
 import { IStatusBarState } from 'src/type/musicInfo';
 import { DownOutlined, ShareAltOutlined } from '@ant-design/icons';
 import { rem } from 'src/common';
+import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
 const StatusBar = () => {
@@ -25,9 +26,12 @@ const StatusBar = () => {
     singerFontSize,
     iconColor,
   } = state;
+
   return (
     <div className={styles.container}>
-      <DownOutlined style={{ fontSize: rem(40), color: iconColor }}/>
+      <Link to='/'>
+        <DownOutlined style={{ fontSize: rem(40), color: iconColor }}/>
+      </Link>
       <div className={styles.content}>
         <span className={styles.name} style={{fontSize: rem(nameFontSize), color: nameColor}}>
           {name}

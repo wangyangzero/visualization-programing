@@ -35,7 +35,7 @@
 }
 
 .footer{
-  margin-bottom: 6vh;
+  margin: 0 0 6vh 10rem;
   width: 690rem;
   display: flex;
   flex-direction: row;
