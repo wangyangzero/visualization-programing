@@ -14,7 +14,7 @@
 }
 
 .content{
-  width: 500rem;
+  width: 480rem;
   margin-left: 30rem;
   display: flex;
   flex-direction: column;
@@ -32,9 +32,11 @@
 }
 
 .playIcon{
-  margin-left: 17rem;
+  position: absolute;
+  right: 125rem;
 }
 
 .moreIcon{
-  margin-left: 30rem;
+  position: absolute;
+  right: 50rem;
 }

@@ -9,7 +9,7 @@ const routes = [
     component: Homepage
   },
   {
-    path: '/music/info=:id',
+    path: '/music/info=:index',
     component: MusicInfo
   },
   {
@@ -17,7 +17,7 @@ const routes = [
     component: MusicList
   },
   {
-    path: '/review',
+    path: '/review=:index',
     component: Review
   },
 ];

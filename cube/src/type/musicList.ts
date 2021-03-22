@@ -36,6 +36,8 @@ export interface ISongInfoProp{
   index: number;  // 序号
   name: string;  // 歌曲名
   singer: string;  // 歌手
+  source: string;  // 音乐资源
+  image: string;  // 音乐配图
 }
 
 export interface ISongInfoState{

@@ -7,6 +7,8 @@ import styles from './style.module.css';
 import { rem } from 'src/common';
 
 const StatusBar = () => {
+  // 歌曲索引
+  const index = Number(location.pathname.split('=').pop());  
   const initState: IStatusBarState = {
     text: '评论(233)',
     textFontSize: 28,
@@ -22,7 +24,9 @@ const StatusBar = () => {
   } = state;
   return (
     <div className={styles.container}>
-      <Link to='music/info=2333'><ArrowLeftOutlined style={{ color: iconColor, fontSize: rem(40) }}/></Link>
+      <Link to={`music/info=${index}`}>
+        <ArrowLeftOutlined style={{ color: iconColor, fontSize: rem(40) }}/>
+      </Link>
       <span className={styles.text} style={{ fontSize: rem(textFontSize), color: textColor }}>
         {text}
       </span>

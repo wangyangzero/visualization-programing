@@ -2,6 +2,7 @@ import React, { memo, useState } from 'react';
 import { ISongInfoProp, ISongInfoState } from 'src/type/musicList';
 import { YoutubeOutlined, MoreOutlined } from '@ant-design/icons';
 import { rem } from 'src/common';
+import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
 const SongInfo = (props: ISongInfoProp) => {
@@ -14,6 +15,7 @@ const SongInfo = (props: ISongInfoProp) => {
     iconColor: '#2E2F31'
   }
   const [state, setState] = useState(initState);
+  const [backgroundColor, setBackgroundColor] = useState('#161616');
   const {
     nameColor,
     nameFontSize,
@@ -21,20 +23,39 @@ const SongInfo = (props: ISongInfoProp) => {
     singerFontSize,
     iconColor,
   } = state;
+  /**
+   * 触摸组件按下
+   */
+   const onTouchStart = () => {
+    setBackgroundColor('#232323');
+  }
+  /**
+   * 触摸组件弹起
+   */
+  const onTouchEnd = () => {
+    setBackgroundColor('#161616');
+  }
   return (
-    <div className={styles.container}>
-      <div className={styles.index}>{index}</div>
-      <div className={styles.content}>
-        <p className={styles.name} style={{ fontSize: rem(nameFontSize), color: nameColor }}>
-          {name}
-        </p>
-        <p className={styles.singer} style={{ fontSize: rem(singerFontSize), color: singerColor }}>
-          {singer}
-        </p>
+    <Link to={`/music/info=${index}`}>
+      <div 
+        className={styles.container}
+        style={{ backgroundColor }}
+        onTouchStart={ onTouchStart }
+        onTouchEnd={ onTouchEnd }
+      >
+        <div className={styles.index}>{index}</div>
+        <div className={styles.content}>
+          <p className={styles.name} style={{ fontSize: rem(nameFontSize), color: nameColor }}>
+            {name}
+          </p>
+          <p className={styles.singer} style={{ fontSize: rem(singerFontSize), color: singerColor }}>
+            {singer}
+          </p>
+        </div>
+        <YoutubeOutlined className={styles.playIcon} style={{ fontSize: 20, color: iconColor }}/>
+        <MoreOutlined className={styles.moreIcon} style={{ fontSize: 20, color: iconColor }}/>
       </div>
-      <YoutubeOutlined className={styles.playIcon} style={{ fontSize: 20, color: iconColor }}/>
-      <MoreOutlined className={styles.moreIcon} style={{ fontSize: 20, color: iconColor }}/>
-    </div>
+    </Link>
   )
 }
 

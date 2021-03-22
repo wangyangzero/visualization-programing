@@ -83,10 +83,8 @@ export interface ISongSheetListState{
 export interface IPlayerState{
   avatarSize: number;  // 胶片图标大小
   inlineIconSize: number;  // 胶片内部图片大小
-  title: string;  // 标题文案
   titleFontSize: number;  // 标题文案大小
   titleColor: string;  // 标题文案颜色
-  author: string;  // 歌曲数文案
   authorFontSize: number;  // 歌曲数文案大小
   authorColor: string;  // 歌曲数文案颜色
   iconColor: string;  // 播放 & 列表图标颜色

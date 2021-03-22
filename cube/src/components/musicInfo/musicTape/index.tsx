@@ -1,11 +1,13 @@
 /** 中间的磁带模块 */
 import React, { memo, useState, useRef, useEffect } from 'react';
 import { IMusicTapeState } from 'src/type/musicInfo';
-import { rem, em } from 'src/common';
+import { rem, em, Songs } from 'src/common';
 import { MUSIC_PLAY } from 'src/constants';
 import styles from './style.module.css';
 
 const MusicTape = () => {
+  // 歌曲索引
+  const index = Number(location.pathname.split('=').pop());
   const timerId = useRef(-1);
   const initState: IMusicTapeState = {
     avatarSize: 480,
@@ -36,6 +38,8 @@ const MusicTape = () => {
     em.on(MUSIC_PLAY,function(value: boolean) {
       value ? avatarRotatePlay() : avatarRotateStop();
     });
+    // 进入页面时自动播放
+    avatarRotatePlay();
     // 清除头像旋转定时器
     return () => cancelAnimationFrame(timerId.current);
   },[])
@@ -45,10 +49,7 @@ const MusicTape = () => {
       <div 
         className={styles.avatar} 
         style={{ width: rem(avatarSize), height: rem(avatarSize), transform: `rotate(${rotatePos}deg)` }}>
-        <div 
-          className={styles.inlineIcon} 
-          style={{ width: rem(inlineIconSize), height: rem(inlineIconSize) }} 
-        />        
+        <img src={Songs[index].image} className={styles.inlineIcon}/>      
       </div>
     </div>
   )

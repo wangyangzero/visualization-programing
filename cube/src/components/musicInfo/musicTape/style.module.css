@@ -16,6 +16,7 @@
 }
 
 .inlineIcon{
-  background: greenyellow no-repeat center center ;
+  width: 300rem;
+  height: 300rem;
   border-radius: 50%;
 }

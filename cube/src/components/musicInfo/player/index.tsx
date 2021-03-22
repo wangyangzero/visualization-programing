@@ -1,6 +1,6 @@
 /** 底部的播放模块 */
-import React, { memo, useState, } from 'react';
-import { rem } from 'src/common';
+import React, { memo, useEffect, useState, } from 'react';
+import { jump, rem } from 'src/common';
 import { Progress } from 'antd';
 import { 
   HeartOutlined, 
@@ -16,13 +16,12 @@ import {
   PauseCircleOutlined
  } from '@ant-design/icons';
 import { IPlayerState } from 'src/type/musicInfo';
-import { formatSeconds, em } from 'src/common';
-import musicSource from 'src/assets/music/candy_wind.mp3';
+import { formatSeconds, em, Songs } from 'src/common';
 import { MUSIC_PLAY } from 'src/constants';
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
-const Player = () => {
+const Player = () => { 
   const initState: IPlayerState = {
     iconColor: '#BEBFB7',
     timerColor: '#8E9181',
@@ -30,8 +29,12 @@ const Player = () => {
     progressColor: '#969A8A',
   }
   const [state, setState] = useState(initState);
+  // 歌曲索引
+  const index = Number(location.pathname.split('=').pop()); 
+  // 音乐曲目（包含音频文件，歌曲名，歌手）
+  const music = Songs[index];
   // 音乐的播放开关
-  const [musicSwitch, setMusicSwitch] = useState(false);
+  const [musicSwitch, setMusicSwitch] = useState(true);
   // 音乐的播放进度
   const [musicProgress, setMusicProgress] = useState(0);  
   const { iconColor, timerFontSize, timerColor, progressColor } = state;
@@ -40,7 +43,6 @@ const Player = () => {
   // 音乐当前播放到的时间
   const [currentTime, setCurrentTime] = useState('');
 
-
   /**
    * 控制音乐播放器的播放
    */
@@ -48,7 +50,6 @@ const Player = () => {
     setMusicSwitch(true);
     em.emit(MUSIC_PLAY, true);
     const audio: any = document.getElementById('audio');
-    audio.currentTime = 50;
     audio.play();
   }
 
@@ -70,6 +71,18 @@ const Player = () => {
     setMusicProgress(audio.currentTime * 100 / audio.duration);
     setCurrentTime(formatSeconds(audio.currentTime))
   }
+  /**
+   * 下一首歌
+   */
+  const nextSong = () => {
+    jump(`/music/info=${(music.index+1) % 12}`)
+  }
+  /**
+   * 上一首歌
+   */
+  const preSong = () => {
+    jump(`/music/info=${music.index-1 >= 0 ? music.index-1 : 11}`)
+  }
 
   return (
     <div className={styles.container}>
@@ -77,7 +90,7 @@ const Player = () => {
         <HeartOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.headerIcon}/>
         <DownloadOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.headerIcon}/>
         <BellOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.headerIcon}/>
-        <Link to='/review'>
+        <Link to={`/review=${music.index}`}>
           <MessageOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.headerIcon}/>
         </Link>
         <MoreOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.headerIcon}/>
@@ -100,7 +113,11 @@ const Player = () => {
       </div>
       <footer className={styles.footer}>
         <RedoOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.footerIcon}/>
-        <StepBackwardOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.footerIcon}/>
+        <StepBackwardOutlined 
+          style={{ color: iconColor, fontSize:rem(40) }} 
+          className={styles.footerIcon}
+          onClick={preSong}
+        />
         {
           musicSwitch
             ? <PauseCircleOutlined 
@@ -114,8 +131,21 @@ const Player = () => {
                 onClick={animationPlay}
               />
         }
-        <audio id={'audio'} src={musicSource} preload='auto' onTimeUpdate={onTimeUpdate}></audio>
-        <StepForwardOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.footerIcon}/>
+        <audio 
+          id={'audio'} 
+          src={music.source} 
+          preload='auto' 
+          onTimeUpdate={onTimeUpdate} 
+          controls
+          autoPlay
+          className={styles.audio}
+          onEnded={nextSong}
+        />
+        <StepForwardOutlined 
+          style={{ color: iconColor, fontSize:rem(40) }} 
+          className={styles.footerIcon}
+          onClick={nextSong}
+        />
         <MenuFoldOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.footerIcon}/>
       </footer>
     </div>

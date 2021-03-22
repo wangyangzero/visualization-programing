@@ -27,6 +27,7 @@ const MyFavoriteMusic = () => {
   }
 
   const [state, setState] = useState(initState);
+  const [backgroundColor, setBackgroundColor] = useState('#19191B');
   const {
     avatarSize,
     avatarUrl,
@@ -45,30 +46,48 @@ const MyFavoriteMusic = () => {
     tagTextColor,    
   } = state;
 
+  /**
+   * 触摸组件按下
+   */
+   const onTouchStart = () => {
+    setBackgroundColor('#2B2C2E');
+  }
+  /**
+   * 触摸组件弹起
+   */
+  const onTouchEnd = () => {
+    setBackgroundColor('#161719');
+  }
+
   return (
     <Link to='/music/list'>
-      <div className={styles.container}>
-        <div 
-          className={styles.avatar} 
-          style={{ width: rem(avatarSize), height: rem(avatarSize) }}>
-            <div className={styles.mask}>
-              <HeartFilled style={{ fontSize: rem(heartSize), color: heartColor }}/>
-            </div>
-        </div>
-        <div className={styles.content}>
-          <p className={styles.text} style={{ fontSize: rem(textFontSize), color: textColor }}>
-            {text}
-          </p>
-          <p className={styles.num} style={{ fontSize: rem(numFontSize), color: numColor }}>
-            {num}
-          </p>
-        </div>
-        <Tag color={tagColor} className={styles.tag}>
-          <HeartOutlined style={{color: tagHeartColor}}/>
-          <p className={styles.tagText} style={{ fontSize: rem(tagTextFontSize), color: tagTextColor }}>
-            {tagText}
-          </p>
-        </Tag>
+      <div 
+        className={styles.container} 
+        style={{ backgroundColor }}
+        onTouchStart={ onTouchStart }
+        onTouchEnd={ onTouchEnd }
+      >
+          <div 
+            className={styles.avatar} 
+            style={{ width: rem(avatarSize), height: rem(avatarSize) }}>
+              <div className={styles.mask}>
+                <HeartFilled style={{ fontSize: rem(heartSize), color: heartColor }}/>
+              </div>
+          </div>
+          <div className={styles.content}>
+            <p className={styles.text} style={{ fontSize: rem(textFontSize), color: textColor }}>
+              {text}
+            </p>
+            <p className={styles.num} style={{ fontSize: rem(numFontSize), color: numColor }}>
+              {num}
+            </p>
+          </div>
+          <Tag color={tagColor} className={styles.tag}>
+            <HeartOutlined style={{color: tagHeartColor}}/>
+            <p className={styles.tagText} style={{ fontSize: rem(tagTextFontSize), color: tagTextColor }}>
+              {tagText}
+            </p>
+          </Tag>
       </div>
     </Link>
   )

@@ -19,9 +19,9 @@ const CommentBox = () => {
       <Input 
         placeholder='千头万绪，化成评论一句'
         bordered={false} 
-        style={{ width: 290, color: iconColor }}
+        style={{ width: rem(500), color: iconColor }}
       />
-      <SmileOutlined style={{ color: iconColor, fontSize: rem(40) }}/>
+      <SmileOutlined className={styles.icon} style={{ color: iconColor, fontSize: rem(40) }}/>
       <span className={styles.text} style={{ fontSize: rem(fontSize), color }}>
         {text}
       </span>

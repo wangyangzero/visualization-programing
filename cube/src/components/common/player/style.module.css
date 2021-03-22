@@ -16,9 +16,16 @@
 }
 
 .inlineIcon{
-  margin: 16rem 0 0 16rem;
-  background: url('../../../assets/img/homepage-heart-background-ic.png') no-repeat center center ;
+  width: 52rem;
+  height: 52rem;
+  margin-top: 15rem;
   border-radius: 50%;
+}
+
+.info{
+  width: 460rem;
+  display: flex;
+  flex-direction: row;
 }
 
 .title{
@@ -29,11 +36,14 @@
 
 .author{
   margin: 0rem;
-  padding-right: 160rem;
   font-family: 'PingFang Regular';
   vertical-align: middle;
+  flex-grow: 1;
 }
 
 .progress{
-  /*margin-left: 160rem;*/
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 30rem;
 }

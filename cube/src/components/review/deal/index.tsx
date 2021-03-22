@@ -2,17 +2,17 @@
 import React, { memo, useState } from 'react';
 import { RightOutlined } from '@ant-design/icons';
 import { IDealState } from 'src/type/review';
-import { rem } from 'src/common';
+import { rem, Songs } from 'src/common';
 import styles from './style.module.css';
 
 const Deal = () => {
+  // 歌曲索引
+  const index = Number(location.pathname.split('=').pop());  
+  const music = Songs[index];
   const initState: IDealState = {
     avatarSize: 120,
-    avatarUrl: '',
-    name: 'Sky High',
     nameFontSize: 28,
     nameColor: '#595B5B',
-    singer: 'Thomas Prime',
     singerFontSize: 12,
     singerColor: '#506A90',
     iconColor: '#595B5B',
@@ -21,11 +21,8 @@ const Deal = () => {
   const [state, setState] = useState(initState);
   const {
     avatarSize,
-    avatarUrl,
-    name,
     nameFontSize,
     nameColor,
-    singer,
     singerFontSize,
     singerColor,
     iconColor,   
@@ -33,16 +30,17 @@ const Deal = () => {
 
   return (
     <div className={styles.container}>
-      <div 
+      <img 
+        src={music.image}
         className={styles.avatar} 
-        style={{ width: rem(avatarSize), height: rem(avatarSize) }}>
-      </div>
+        style={{ width: rem(avatarSize), height: rem(avatarSize) }} 
+      />
       <div className={styles.content}>
         <p className={styles.text} style={{ fontSize: rem(nameFontSize), color: nameColor }}>
-          {name}
+          {music.name}
         </p>
         <p className={styles.num} style={{ fontSize: rem(singerFontSize), color: singerColor }}>
-          {singer}
+          {music.singer}
         </p>
       </div>
       <RightOutlined style={{ color: iconColor, fontSize: rem(24) }} className={styles.icon}/>

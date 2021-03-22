@@ -34,6 +34,11 @@
   margin: -10rem 15rem 0 15rem;
 }
 
+.audio{
+  width: 0;
+  height: 0;
+}
+
 .footer{
   margin: 0 0 6vh 10rem;
   width: 690rem;

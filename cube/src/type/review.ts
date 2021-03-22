@@ -7,11 +7,8 @@ export interface IStatusBarState{
 
 export interface IDealState{
   avatarSize: number;  // 歌曲封面大小
-  avatarUrl: string;  // 歌曲封面图像来源
-  name: string;  // 歌曲名
   nameFontSize: number;  // 歌曲名字体大小
   nameColor: string;  // 歌曲名字体颜色
-  singer: string;  // 歌手名
   singerFontSize: number;  // 歌手名字体大小
   singerColor: string;  // 歌手名字体颜色
   iconColor: string;  // 图标颜色

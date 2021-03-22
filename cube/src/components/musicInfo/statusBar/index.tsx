@@ -2,11 +2,13 @@
 import React, { memo, useState } from 'react';
 import { IStatusBarState } from 'src/type/musicInfo';
 import { DownOutlined, ShareAltOutlined } from '@ant-design/icons';
-import { rem } from 'src/common';
+import { rem, Songs } from 'src/common';
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
 const StatusBar = () => {
+  // 歌曲索引
+  const index = Number(location.pathname.split('=').pop());
   const initState: IStatusBarState = {
     name: 'Sky High',
     nameFontSize: 28,
@@ -34,10 +36,10 @@ const StatusBar = () => {
       </Link>
       <div className={styles.content}>
         <span className={styles.name} style={{fontSize: rem(nameFontSize), color: nameColor}}>
-          {name}
+          {Songs[index]?.name}
         </span>
         <span className={styles.singer} style={{fontSize: rem(singerFontSize), color: singerColor}}>
-          {singer}
+          {Songs[index]?.singer}
         </span>
       </div>
       <ShareAltOutlined 
