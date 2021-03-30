@@ -9,58 +9,65 @@ const ReviewList = () => {
       {
         avatarUrl: '',
         username: '为2020决一死战',
-        date: '2019年11月29日',
+        dates: '1617113143303',
         likes: 663,
         msg: '更好的十年~，和宸宸一起',
-        reply: '136条回复',
+        replyId: -1,
+        replyNum: 136,
       },
       {
         avatarUrl: '',
         username: '为2020决一死战',
-        date: '2019年11月29日',
+        dates: '1617113143303',
         likes: 663,
         msg: '更好的十年~，和宸宸一起',
-        reply: '136条回复',
+        replyId: -1,
+        replyNum: 136,
       },
       {
         avatarUrl: '',
         username: '为2020决一死战',
-        date: '2019年11月29日',
+        dates: '1617113143303',
         likes: 663,
         msg: '更好的十年~，和宸宸一起',
-        reply: '136条回复',
+        replyId: -1,
+        replyNum: 136,
       },
       {
         avatarUrl: '',
         username: '为2020决一死战',
-        date: '2019年11月29日',
+        dates: '1617113143303',
         likes: 663,
         msg: '更好的十年~，和宸宸一起',
-        reply: '136条回复',
+        replyId: -1,
+        replyNum: 136,
       },
       {
         avatarUrl: '',
         username: '为2020决一死战',
-        date: '2019年11月29日',
+        dates: '1617113143303',
         likes: 663,
         msg: '更好的十年~，和宸宸一起',
-        reply: '136条回复',
+        replyId: -1,
+        replyNum: 136,
       },
       {
         avatarUrl: '',
         username: '为2020决一死战',
-        date: '2019年11月29日',
+        dates: '1617113143303',
         likes: 663,
         msg: '更好的十年~，和宸宸一起',
-        reply: '136条回复',
+        replyId: -1,
+        replyNum: 136,
       },
       {
         avatarUrl: '',
         username: '为2020决一死战',
-        date: '2019年11月29日',
+        dates: '1617113143303',
         likes: 663,
         msg: '更好的十年~，和宸宸一起',
-        reply: '136条回复',
+        replyId: -1,
+        replyNum: 136,
       },
     ]
   }
@@ -74,10 +81,11 @@ const ReviewList = () => {
             key={JSON.stringify(item)+index}
             avatarUrl={item.avatarUrl}
             username={item.username}
-            date={item.date}
+            dates={item.dates}
             likes={item.likes}
             msg={item.msg}
-            reply={item.reply}
+            replyId={item.replyId}
+            replyNum={item.replyNum}
           />
         ))
       }

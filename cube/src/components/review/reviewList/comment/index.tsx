@@ -2,11 +2,13 @@ import React, { memo, useState } from 'react';
 import { ICommentProp, ICommentState } from 'src/type/review';
 import avatarSource from 'src/assets/img/homepage-heart-background-ic.png'
 import { LikeOutlined, RightOutlined } from '@ant-design/icons';
-import { rem } from 'src/common';
+import { rem, timestampToTime } from 'src/common';
 import styles from './style.module.css';
 
 const Comment = (props: ICommentProp) => {
-  const { avatarUrl, username, date, likes, msg, reply } = props;
+  const { avatarUrl, username, dates, likes, msg, replyId, replyNum } = props;
+  const reply = `${replyNum}条回复 `;
+  const date = timestampToTime(dates);
   const initState: ICommentState = {
     avatarSize: 72,
     usernameFontSize: 26,
@@ -62,7 +64,7 @@ const Comment = (props: ICommentProp) => {
           {msg}
         </p>
         <p className={styles.reply} style={{ fontSize: rem(replyFontSize), color: replyColor }}>
-          {reply}&nbsp;
+          {reply}
           <RightOutlined style={{ fontSize: rem(18), color: replyColor }}/>
         </p>
       </div>

@@ -49,6 +49,17 @@ export function formatSeconds(value: number): string {
   return `${m}:${s}`
 }
 
+export function timestampToTime(timestamp: string | undefined): string {
+  if(!timestamp) return '';
+  const date =new Date(Number(timestamp));
+  const y = date.getFullYear();
+  const m = date.getMonth()+1 < 10 ? `0${date.getMonth()+1}` : date.getMonth()+1;
+  const d = date.getDate();
+  
+  return `${y}年${m}月${d}日`;
+}
+
+// 创建一个事件订阅器
 export const em = new EM();
 
 export const Songs = [

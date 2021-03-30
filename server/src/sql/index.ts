@@ -16,7 +16,7 @@ connection.connect();
 
 // 创建评论表
 const createReviewTable = () => {
-  connection.query(createReviewTableSql, (err: any, res: any) => {
+  connection.query(createReviewTableSql, function (err: any, res: any) {
     if(err) console.warn(err);
     console.log('结果为：');
     console.log(res);
@@ -25,7 +25,6 @@ const createReviewTable = () => {
 
 // 插入评论
 interface IReview{
-  reviewId: number;  // 评论主键
   avatarUrl: string;  // 头像链接
   username: string;  // 用户名
   dates: string;  // 日期
@@ -35,29 +34,51 @@ interface IReview{
   replyNum: number; // 该评论下的回复数
 }
 const insertReview = (review: IReview) => {
-  connection.query(insertReviewSql, review, (err: any, res: any) => {
-    if(err) console.warn(err);
-    console.log('结果为：');
-    console.log(res);
+  const addReview = [
+    review.avatarUrl, 
+    review.username, 
+    review.dates, 
+    review.likes, 
+    review.msg,
+    review.replyId,
+    review.replyNum
+  ];
+  return new Promise((res, rej) => {
+    connection.query(insertReviewSql, addReview, function(error: any) {
+      if(error) {
+        console.warn(error);
+        rej(error);
+      }
+      res(true);
+    });
   });
 }
 
 // 删除评论
 const deleteReview = (reviewId: number) => {
-  connection.query(deleteReviewSql, [reviewId],(err: any, res: any) => {
-    if(err) console.warn(err);
-    console.log('结果为：');
-    console.log(res);
+  return new Promise((res, rej) => {
+    connection.query(deleteReviewSql, [reviewId], function(error: any, result: any) {
+      if(error) {
+        console.warn(error);
+        rej(error);
+      }
+      console.log(result);
+      res(true);
+    });
   });
 }
 
 // 查询评论列表
-const selectReview = (reviewId: number) => {
-  connection.query(selectReviewSql, [reviewId],(err: any, res: any) => {
-    if(err) console.warn(err);
-    console.log('结果为：');
-    console.log(res);
+const selectReview = (replyId: number) => {
+  return new Promise((res, rej) => {
+    connection.query(selectReviewSql, [replyId], function (error: any, result: any) {
+      if(error) {
+        rej(error);
+      }
+      res(result);
+    });
   });
+
 }
 
 export {};

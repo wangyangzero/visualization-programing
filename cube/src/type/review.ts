@@ -38,12 +38,14 @@ export interface ICommentState{
 }
 
 export interface ICommentProp{
+  reviewId?: number;  // 评论的唯一标识
   avatarUrl: string;  // 头像资源链
   username: string;  // 用户名
-  date: string;  // 发表日期
-  likes: number;  // 点赞数
+  dates?: string;  // 发表日期
+  likes?: number;  // 点赞数
   msg: string;  // 留言内容
-  reply: string;  // 回复数量文本
+  replyId: number;  // 针对该评论的回复列表的唯一标识
+  replyNum: number; // 针对该评论的回复列表的数目
 }
 
 export interface IReviewListState{
