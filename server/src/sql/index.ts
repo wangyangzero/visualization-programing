@@ -1,7 +1,13 @@
 const mysql = require('mysql');
 const reviewSql = require('./review');
 
-const { createReviewTableSql, insertReviewSql, selectReviewSql, deleteReviewSql } = reviewSql;
+const { 
+  createReviewTableSql, 
+  insertReviewSql, 
+  selectReviewSql, 
+  deleteReviewSql, 
+  updateReviewLikesSql 
+} = reviewSql;
 
 // 配置连接数据
 const connection = mysql.createConnection({
@@ -32,6 +38,7 @@ interface IReview{
   msg: string;  // 评论内容
   replyId: number;  // 该评论下留言的主键
   replyNum: number; // 该评论下的回复数
+  songId: number;  // 歌曲的标识
 }
 const insertReview = (review: IReview) => {
   const addReview = [
@@ -41,7 +48,8 @@ const insertReview = (review: IReview) => {
     review.likes, 
     review.msg,
     review.replyId,
-    review.replyNum
+    review.replyNum,
+    review.songId
   ];
   return new Promise((res, rej) => {
     connection.query(insertReviewSql, addReview, function(error: any) {
@@ -52,7 +60,7 @@ const insertReview = (review: IReview) => {
       res(true);
     });
   });
-}
+};
 
 // 删除评论
 const deleteReview = (reviewId: number) => {
@@ -66,19 +74,30 @@ const deleteReview = (reviewId: number) => {
       res(true);
     });
   });
-}
+};
 
 // 查询评论列表
-const selectReview = (replyId: number) => {
+const selectReview = (replyId: number, songId: number) => {
   return new Promise((res, rej) => {
-    connection.query(selectReviewSql, [replyId], function (error: any, result: any) {
+    connection.query(selectReviewSql, [replyId, songId], function (error: any, result: any) {
       if(error) {
         rej(error);
       }
       res(result);
     });
   });
+};
 
+// 更新评论的点赞数
+const updateReviewLikes = (likes: number, reviewId: number) => {
+  return new Promise((res, rej) => {
+    connection.query(updateReviewLikesSql, [likes, reviewId], function(error: any, result: any) {
+      if(error) {
+        rej(error);
+      }
+      res(result);
+    })
+  })
 }
 
 export {};
@@ -87,4 +106,5 @@ module.exports = {
   selectReview,
   insertReview,
   deleteReview,
+  updateReviewLikes
 };

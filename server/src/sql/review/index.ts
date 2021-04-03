@@ -9,6 +9,7 @@ const createReviewTableSql = `
     msg varchar(200) not null,
     replyId int,
     replyNum int,
+    songId int,
     primary key (reviewId)
   )engine=INNODB auto_increment=1
 `
@@ -16,9 +17,9 @@ const createReviewTableSql = `
 // 插入一条评论
 const insertReviewSql = `
   insert into review
-  (avatarUrl,username,dates,likes,msg,replyId,replyNum)
+  (avatarUrl,username,dates,likes,msg,replyId,replyNum,songId)
   values
-  (?, ?, ?, ?, ?, ?, ?)
+  (?, ?, ?, ?, ?, ?, ?, ?)
 `
 
 // 删除一条评论
@@ -28,7 +29,12 @@ const deleteReviewSql = `
 
 // 查询评论列表
 const selectReviewSql = `
-  select * from review where replyId = ?
+  select * from review where replyId = ? and songId = ?
+`
+
+// 更新评论的点赞值
+const updateReviewLikesSql = `
+  update review set likes = ? where reviewId = ?
 `
 
 export{};
@@ -37,4 +43,5 @@ module.exports = {
 	deleteReviewSql,
 	selectReviewSql,
 	insertReviewSql,
+  updateReviewLikesSql,
 }
