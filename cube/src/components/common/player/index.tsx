@@ -4,8 +4,7 @@ import { rem } from 'src/common';
 import { IPlayerState } from 'src/type/homepage';
 import { Progress } from 'antd';
 import { MenuUnfoldOutlined, CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
-import { Songs } from 'src/common';
-import musicSource from 'src/assets/music/candy_wind.mp3';
+import { Songs, isDev } from 'src/common';
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
@@ -16,7 +15,7 @@ const Player = () => {
     inlineIconSize: 48,
     titleFontSize: 24,
     titleColor: '#595B5B',
-    authorFontSize: 12,
+    authorFontSize: 16,
     authorColor: '#565759',
     iconColor: '#3C3C3C',
   }
@@ -104,7 +103,7 @@ const Player = () => {
 
 
   return (
-    <div className={styles.container} style={{ backgroundColor }}>
+    <div className={styles.container} style={{ backgroundColor, width: isDev() ? '25vw' : '100vw' }}>
       <div
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
@@ -114,23 +113,20 @@ const Player = () => {
           <img src={music.image} className={styles.inlineIcon}/>
         </Link>      
       </div>
-
+      <Link to={`/music/info=${music.index}`}>
       <div className={styles.info} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-        <Link to={`/music/info=${music.index}`}>
-          <p 
-            style={{ fontSize: rem(titleFontSize), color: titleColor }} 
-            className={styles.title}>
-              {music.name}
-          </p>
-        </Link>
-        <Link to={`/music/info=${music.index}`}>
-          <p
-            style={{ fontSize: rem(authorFontSize), color: authorColor }} 
-            className={styles.author}>
-              {`~  ${music.singer}`}
-          </p>
-        </Link>
+        <p 
+          style={{ fontSize: rem(titleFontSize), color: titleColor }} 
+          className={styles.title}>
+            {music.name}
+        </p>
+        <p
+          style={{ fontSize: rem(authorFontSize), color: authorColor }} 
+          className={styles.author}>
+            {`~  ${music.singer}`}
+        </p>
       </div>
+      </Link>
       <div className={styles.progress}>
         <Progress 
           type="circle" 

@@ -1,10 +1,12 @@
 .container{
   margin-top: 80rem;
+  position: relative;
   height: 12vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+  border-radius: 10rem;
 }
 
 .avatar{
@@ -33,5 +35,6 @@
 }
 
 .icon{
-  margin-left: 180rem;
+  position: absolute;
+  right: 20rem;
 }

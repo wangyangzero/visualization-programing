@@ -62,6 +62,13 @@ export function timestampToTime(timestamp: string | undefined): string {
 // 创建一个事件订阅器
 export const em = new EM();
 
+// 获取URL中的索引信息
+export const getIndex = (): number => Number(location.pathname.split('=').pop());
+
+// 是开发环境还是生产环境
+export const isDev = (): boolean => process.env.NODE_ENV === 'development';
+
+// 歌曲的本地数据
 export const Songs = [
   {
     index: 0,

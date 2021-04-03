@@ -18,7 +18,7 @@ const PlaylistInfo = () => {
     userIconUrl: '',
     userIconSize: 40,
     username: '洋洋的小娇妻',
-    usernameFontSize: 12,
+    usernameFontSize: 20,
     usernameColor: '#636363',
     iconColor: '#636363',
   }

@@ -3,12 +3,12 @@ import React, { memo, useState } from 'react';
 import { IStatusBarState } from 'src/type/review';
 import { ArrowLeftOutlined, ShareAltOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import { rem, getIndex, isDev } from 'src/common';
 import styles from './style.module.css';
-import { rem } from 'src/common';
 
 const StatusBar = () => {
   // 歌曲索引
-  const index = Number(location.pathname.split('=').pop());  
+  const index = getIndex();  
   const initState: IStatusBarState = {
     text: '评论(233)',
     textFontSize: 28,
@@ -23,7 +23,7 @@ const StatusBar = () => {
     iconColor,
   } = state;
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ width: isDev() ? '25vw' : '100vw' }}>
       <Link to={`music/info=${index}`}>
         <ArrowLeftOutlined style={{ color: iconColor, fontSize: rem(40) }}/>
       </Link>

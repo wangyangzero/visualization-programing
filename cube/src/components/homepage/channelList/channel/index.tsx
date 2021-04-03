@@ -8,7 +8,7 @@ const Channel = (props: IChannelProp) => {
   const { imgSource, text } = props;
   const initState: IChannelState = {
     imgSize: 72,
-    textFontSize: 12,
+    textFontSize: 16,
     textColor: '#565759'
   }
 

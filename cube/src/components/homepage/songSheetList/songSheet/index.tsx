@@ -11,7 +11,7 @@ const SongSheet = (props: ISongSheetProp) => {
     avatarSize: 80,
     textFontSize: 24,
     textColor: '#595B5B',
-    numFontSize: 12,
+    numFontSize: 16,
     numColor: '#3C3C3C',
     iconColor: '#3C3C3C',
   };

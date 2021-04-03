@@ -17,12 +17,12 @@ const MyFavoriteMusic = () => {
     textFontSize: 28,
     textColor: '#595B5B',
     num: '15首',
-    numFontSize: 12,
+    numFontSize: 16,
     numColor: '#3C3C3C',
     tagColor: '#1E1F20',
     tagHeartColor: '#DC143C',
     tagText: '心动模式',
-    tagTextFontSize: 12,
+    tagTextFontSize: 16,
     tagTextColor: '',
   }
 

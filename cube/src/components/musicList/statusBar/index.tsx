@@ -2,7 +2,7 @@
 import React, { memo, useState } from 'react';
 import { IStatusBarState } from 'src/type/musicList';
 import { ArrowLeftOutlined, SearchOutlined, MoreOutlined } from '@ant-design/icons';
-import { rem } from 'src/common';
+import { rem, isDev } from 'src/common';
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
@@ -16,7 +16,7 @@ const StatusBar = () => {
   const [state, setState] = useState(initState);
   const { text, textFontSize, textColor, iconColor } = state;
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ width: isDev() ? '25vw' : '100vw' }}>
       <Link to='/'><ArrowLeftOutlined style={{ fontSize: rem(36), color: iconColor }} /></Link>
       <span style={{ fontSize: rem(textFontSize), color: textColor }} className={styles.text}>
         {text}

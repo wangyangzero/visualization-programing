@@ -1,7 +1,10 @@
 .container{
   width: 100%;
+  padding: 20rem;
+  position: relative;
   display: flex;
   flex-wrap: wrap;
+  border-radius: 10rem;
 }
 
 .avatar{
@@ -20,6 +23,7 @@
   margin-left: 20rem;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .username{
@@ -31,7 +35,8 @@
 }
 
 .likes{
-  margin-left: 320rem;
+  position: absolute;
+  right: 20rem;
 }
 
 .content{
@@ -47,8 +52,10 @@
   text-align: start;
 }
 
-.reply{
-  margin-top: 10rem;
-  width: 300rem;
-  text-align: start;
+.popContent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #aaa;
 }
+

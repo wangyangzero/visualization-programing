@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
+import { isDev } from './common';
 import reportWebVitals from './reportWebVitals';
+
+// 开发环境使用平台预览CSS，生产环境使用成品CSS
+console.log(isDev())
+isDev() ? require('./index.dev.css') : require('./index.pro.css');
 
 ReactDOM.render(
   <React.StrictMode>

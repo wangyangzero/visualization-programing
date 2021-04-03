@@ -1,6 +1,7 @@
 .container{
   margin-bottom: 20rem;
   padding: 30rem;
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   border-radius: 10rem;
@@ -22,11 +23,13 @@
 }
 
 .addIcon{
-  margin-left: 392rem;
+  position: absolute;
+  right: 80rem;
 }
 
 .moreIcon{
-  margin-left: 30rem;
+  position: absolute;
+  right: 30rem;
 }
 
 .content{

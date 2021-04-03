@@ -2,13 +2,13 @@
 import React, { memo, useState } from 'react';
 import { IStatusBarState } from 'src/type/musicInfo';
 import { DownOutlined, ShareAltOutlined } from '@ant-design/icons';
-import { rem, Songs } from 'src/common';
+import { rem, Songs, getIndex } from 'src/common';
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
 const StatusBar = () => {
   // 歌曲索引
-  const index = Number(location.pathname.split('=').pop());
+  const index = getIndex();
   const initState: IStatusBarState = {
     name: 'Sky High',
     nameFontSize: 28,

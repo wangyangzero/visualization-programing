@@ -33,23 +33,22 @@ export interface ICommentState{
   likesIconColor: string;  // 点赞图标颜色
   msgFontSize: number;  // 留言字体大小
   msgColor: string;  // 留言字体颜色
-  replyFontSize: number; // 回复数量文本字体大小
-  replyColor: string;  // 回复数量文本字体颜色
 }
 
 export interface ICommentProp{
   reviewId?: number;  // 评论的唯一标识
-  avatarUrl: string;  // 头像资源链
+  avatarUrl: string | null;  // 头像资源链
   username: string;  // 用户名
   dates?: string;  // 发表日期
   likes?: number;  // 点赞数
   msg: string;  // 留言内容
   replyId: number;  // 针对该评论的回复列表的唯一标识
   replyNum: number; // 针对该评论的回复列表的数目
+  songId?: number; // 歌曲的标识
 }
 
 export interface IReviewListState{
-  reviews: ICommentProp[];
+  reviews: ICommentProp[] | [];
 }
 
 export interface ICommentBoxState{

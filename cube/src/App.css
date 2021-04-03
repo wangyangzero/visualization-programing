@@ -16,6 +16,20 @@
   color: #3A3C40!important;
 }
 
+.ant-popover-arrow{
+  margin-bottom: -50rem;
+  border-color: #3A3C40!important;
+}
+
+.ant-popover-inner{
+  margin-bottom: -50rem;
+  background-color: #3A3C40!important;
+}
+
+.ant-popover-inner-content{
+  padding: 12rem!important;
+}
+
 .container {
   margin: 0;
   height: 100%;

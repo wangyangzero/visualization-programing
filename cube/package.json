@@ -13,9 +13,11 @@
     "@types/react-router-dom": "^5.1.7",
     "antd": "^4.13.1",
     "axios": "^0.21.1",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "eventemitter3": "^4.0.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-loadable": "^5.5.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "typescript": "^4.1.2",
@@ -43,6 +45,16 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      [
+        "syntax-dynamic-import"
+      ]
     ]
   },
   "devDependencies": {

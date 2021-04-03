@@ -1,0 +1,44 @@
+/* 加载字体 */
+@font-face{
+  font-family: 'PingFang Bold';
+  src: url('./assets/fonts/PingFang Bold.ttf');
+}
+
+@font-face{
+  font-family: 'PingFang Regular';
+  src: url('./assets/fonts/PingFang Regular.ttf');
+}
+
+@font-face{
+  font-family: 'PingFang Medium';
+  src: url('./assets/fonts/PingFang Medium.ttf');
+}
+
+html {
+  margin: 0;
+  font-size: calc(1vw / 32);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif, 'PingFang Bold';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root{
+  width: 25vw;
+  height: 736px;
+  overflow: scroll;
+}
+
+#root::-webkit-scrollbar {
+  width: 0px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

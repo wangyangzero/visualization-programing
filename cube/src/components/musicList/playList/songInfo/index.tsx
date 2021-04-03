@@ -10,8 +10,8 @@ const SongInfo = (props: ISongInfoProp) => {
   const initState: ISongInfoState = {
     nameFontSize: 28,
     nameColor: '#666769',
-    singerFontSize: 12,
-    singerColor: '#2E2F31',
+    singerFontSize: 16,
+    singerColor: '#4E4F51',
     iconColor: '#2E2F31'
   }
   const [state, setState] = useState(initState);
@@ -43,7 +43,7 @@ const SongInfo = (props: ISongInfoProp) => {
         onTouchStart={ onTouchStart }
         onTouchEnd={ onTouchEnd }
       >
-        <div className={styles.index}>{index}</div>
+        <div className={styles.index}>{index+1}</div>
         <div className={styles.content}>
           <p className={styles.name} style={{ fontSize: rem(nameFontSize), color: nameColor }}>
             {name}

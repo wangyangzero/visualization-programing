@@ -26,19 +26,17 @@
   width: 460rem;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .title{
   margin: 0 0 0 20rem;
   font-family: 'PingFang Bold';
-  vertical-align: middle;
 }
 
 .author{
   margin: 0rem;
   font-family: 'PingFang Regular';
-  vertical-align: middle;
-  flex-grow: 1;
 }
 
 .progress{

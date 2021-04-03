@@ -5,6 +5,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+  border-radius: 10rem;
 }
 
 .index{
@@ -14,7 +15,7 @@
 }
 
 .content{
-  width: 480rem;
+  width: 620rem;
   margin-left: 30rem;
   display: flex;
   flex-direction: column;

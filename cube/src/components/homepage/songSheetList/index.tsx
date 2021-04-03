@@ -9,7 +9,7 @@ import styles from './style.module.css';
 const SongSheetList = (props: ISongSheetListProp) => {
   const { key, name, songSheet } = props;
   const initState: ISongSheetListState = {
-    textFontSize: 12,
+    textFontSize: 16,
     textColor: '#3C3C3C',
     iconColor: '#3C3C3C',
   } 

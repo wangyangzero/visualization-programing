@@ -1,13 +1,13 @@
 /** 中间的磁带模块 */
 import React, { memo, useState, useRef, useEffect } from 'react';
 import { IMusicTapeState } from 'src/type/musicInfo';
-import { rem, em, Songs } from 'src/common';
+import { rem, em, Songs, getIndex } from 'src/common';
 import { MUSIC_PLAY } from 'src/constants';
 import styles from './style.module.css';
 
 const MusicTape = () => {
   // 歌曲索引
-  const index = Number(location.pathname.split('=').pop());
+  const index = getIndex();
   const timerId = useRef(-1);
   const initState: IMusicTapeState = {
     avatarSize: 480,
@@ -24,7 +24,7 @@ const MusicTape = () => {
    * 控制头像旋转动画的开始
    */
    const avatarRotatePlay = () => {
-    setRotatePos(prerotatePos => (prerotatePos + 1) % 360);
+    setRotatePos(prerotatePos => (prerotatePos + 0.5) % 360);
     timerId.current = requestAnimationFrame(avatarRotatePlay);
   }
   /**

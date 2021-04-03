@@ -1,7 +1,8 @@
-import { getReviewList, addReview, deleteReview } from './review';
+import { getReviewList, addReview, deleteReview, updateReviewLikes } from './review';
 
 export {
   getReviewList,
   addReview,
   deleteReview,
+  updateReviewLikes
 };

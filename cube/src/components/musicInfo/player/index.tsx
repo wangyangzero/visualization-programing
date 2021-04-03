@@ -16,7 +16,7 @@ import {
   PauseCircleOutlined
  } from '@ant-design/icons';
 import { IPlayerState } from 'src/type/musicInfo';
-import { formatSeconds, em, Songs } from 'src/common';
+import { formatSeconds, em, Songs, getIndex } from 'src/common';
 import { MUSIC_PLAY } from 'src/constants';
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
@@ -25,12 +25,12 @@ const Player = () => {
   const initState: IPlayerState = {
     iconColor: '#BEBFB7',
     timerColor: '#8E9181',
-    timerFontSize: 12,
+    timerFontSize: 16,
     progressColor: '#969A8A',
   }
   const [state, setState] = useState(initState);
   // 歌曲索引
-  const index = Number(location.pathname.split('=').pop()); 
+  const index = getIndex(); 
   // 音乐曲目（包含音频文件，歌曲名，歌手）
   const music = Songs[index];
   // 音乐的播放开关
