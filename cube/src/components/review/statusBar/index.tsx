@@ -3,7 +3,7 @@ import React, { memo, useState } from 'react';
 import { IStatusBarState } from 'src/type/review';
 import { ArrowLeftOutlined, ShareAltOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import { rem, getIndex, isDev } from 'src/common';
+import { rem, getIndex, isDev, editorClassName } from 'src/common';
 import styles from './style.module.css';
 
 const StatusBar = () => {
@@ -23,7 +23,10 @@ const StatusBar = () => {
     iconColor,
   } = state;
   return (
-    <div className={styles.container} style={{ width: isDev() ? '25vw' : '100vw' }}>
+    <div 
+      className={[styles.container, editorClassName()].join(' ')} 
+      style={{ width: isDev() ? '25vw' : '100vw', left: isDev() ? '37.5vw' : 0 }}
+    >
       <Link to={`music/info=${index}`}>
         <ArrowLeftOutlined style={{ color: iconColor, fontSize: rem(40) }}/>
       </Link>

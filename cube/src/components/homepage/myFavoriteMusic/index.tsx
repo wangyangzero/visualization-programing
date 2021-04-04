@@ -3,7 +3,7 @@ import React, { memo, useState } from 'react';
 import { Tag } from 'antd';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import { IMyFavoriteMusicState } from 'src/type/homepage';
-import { rem } from 'src/common';
+import { rem, editorClassName } from 'src/common';
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
@@ -62,32 +62,33 @@ const MyFavoriteMusic = () => {
   return (
     <Link to='/music/list'>
       <div 
-        className={styles.container} 
+        className={[styles.container, editorClassName()].join(' ')} 
         style={{ backgroundColor }}
         onTouchStart={ onTouchStart }
         onTouchEnd={ onTouchEnd }
       >
-          <div 
-            className={styles.avatar} 
-            style={{ width: rem(avatarSize), height: rem(avatarSize) }}>
-              <div className={styles.mask}>
-                <HeartFilled style={{ fontSize: rem(heartSize), color: heartColor }}/>
-              </div>
+        <div 
+          className={styles.avatar} 
+          style={{ width: rem(avatarSize), height: rem(avatarSize) }}
+        >
+          <div className={styles.mask}>
+            <HeartFilled style={{ fontSize: rem(heartSize), color: heartColor }}/>
           </div>
-          <div className={styles.content}>
-            <p className={styles.text} style={{ fontSize: rem(textFontSize), color: textColor }}>
-              {text}
-            </p>
-            <p className={styles.num} style={{ fontSize: rem(numFontSize), color: numColor }}>
-              {num}
-            </p>
-          </div>
-          <Tag color={tagColor} className={styles.tag}>
-            <HeartOutlined style={{color: tagHeartColor}}/>
-            <p className={styles.tagText} style={{ fontSize: rem(tagTextFontSize), color: tagTextColor }}>
-              {tagText}
-            </p>
-          </Tag>
+        </div>
+        <div className={styles.content}>
+          <p className={styles.text} style={{ fontSize: rem(textFontSize), color: textColor }}>
+            {text}
+          </p>
+          <p className={styles.num} style={{ fontSize: rem(numFontSize), color: numColor }}>
+            {num}
+          </p>
+        </div>
+        <Tag color={tagColor} className={styles.tag}>
+          <HeartOutlined style={{color: tagHeartColor}}/>
+          <p className={styles.tagText} style={{ fontSize: rem(tagTextFontSize), color: tagTextColor }}>
+            {tagText}
+          </p>
+        </Tag>
       </div>
     </Link>
   )

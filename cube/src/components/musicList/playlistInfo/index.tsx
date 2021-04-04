@@ -2,7 +2,7 @@
 import React, { memo, useState } from 'react';
 import { HeartFilled, RightOutlined } from '@ant-design/icons';
 import { IPlayListInfoState } from 'src/type/musicList';
-import { rem } from 'src/common';
+import { rem, editorClassName } from 'src/common';
 import userIcon from 'src/assets/img/homepage-heart-background-ic.png';
 import styles from './style.module.css';
 
@@ -39,7 +39,7 @@ const PlaylistInfo = () => {
     iconColor
   } = state;
   return (
-      <div className={styles.container}>
+      <div className={[styles.container, editorClassName()].join(' ')}>
       <div 
         className={styles.avatar} 
         style={{ width: rem(avatarSize), height: rem(avatarSize) }}>

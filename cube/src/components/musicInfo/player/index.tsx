@@ -16,7 +16,7 @@ import {
   PauseCircleOutlined
  } from '@ant-design/icons';
 import { IPlayerState } from 'src/type/musicInfo';
-import { formatSeconds, em, Songs, getIndex } from 'src/common';
+import { formatSeconds, em, Songs, getIndex, editorClassName } from 'src/common';
 import { MUSIC_PLAY } from 'src/constants';
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
@@ -85,7 +85,7 @@ const Player = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={[styles.container, editorClassName()].join(' ')}>
       <header className={styles.header}>
         <HeartOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.headerIcon}/>
         <DownloadOutlined style={{ color: iconColor, fontSize:rem(40) }} className={styles.headerIcon}/>

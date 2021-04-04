@@ -2,7 +2,7 @@ import React, { memo, useState, useEffect, useRef } from 'react';
 import { IReviewListState, ICommentProp } from 'src/type/review';
 import Comment from './comment';
 import { getReviewList } from 'src/store';
-import { em, getIndex } from 'src/common';
+import { em, getIndex, editorClassName } from 'src/common';
 import styles from './style.module.css';
 import { REVIEW_UPDATE } from 'src/constants';
 
@@ -65,7 +65,7 @@ const ReviewList = () => {
   const { reviews } = state;
 
   return (
-    <div className={styles.container} id="container">
+    <div className={[styles.container, editorClassName()].join(' ')} id="container">
       {
         reviews.map((item: ICommentProp, index: number) => (
           <Comment 

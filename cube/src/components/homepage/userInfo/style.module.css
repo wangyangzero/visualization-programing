@@ -3,6 +3,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+  border-width: 3rem;
   height: 12.5vh;
 }
 

@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react';
 import { IReviewStatusBarState } from 'src/type/review';
-import { rem } from 'src/common';
+import { rem, editorClassName } from 'src/common';
 import styles from './style.module.css';
 
 const ReviewStatusBar = () => {
@@ -26,7 +26,7 @@ const ReviewStatusBar = () => {
   } = state;
 
   return (
-    <div className={styles.container}>
+    <div className={[styles.container, editorClassName()].join(' ')}>
       <span style={{ fontSize: rem(fontSize), color: focusColor }} className={styles.title}>
         {title}
       </span>

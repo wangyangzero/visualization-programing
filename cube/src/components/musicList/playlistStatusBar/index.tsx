@@ -2,7 +2,7 @@
 import React, { memo, useState } from 'react';
 import { PlayCircleTwoTone, CheckCircleOutlined, DownloadOutlined } from '@ant-design/icons';
 import { IPlaylistStatusBarState } from 'src/type/musicList';
-import { rem } from 'src/common';
+import { rem, editorClassName } from 'src/common';
 import styles from './style.module.css';
 
 const PlaylistStatusBar = () => {
@@ -28,7 +28,7 @@ const PlaylistStatusBar = () => {
     numColor,  
   } = state;
   return (
-    <div className={styles.container}>
+    <div className={[styles.container, editorClassName()].join(' ')}>
       <PlayCircleTwoTone twoToneColor={iconBackgroundColor} style={{ fontSize: 18 }} />
       <span style={{ fontSize: rem(textFontSize), color: textColor }} className={styles.text}>
         {text}

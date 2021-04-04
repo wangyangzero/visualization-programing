@@ -2,7 +2,7 @@
 import React, { memo, useState } from 'react';
 import { IStatusBarState } from 'src/type/musicInfo';
 import { DownOutlined, ShareAltOutlined } from '@ant-design/icons';
-import { rem, Songs, getIndex } from 'src/common';
+import { rem, Songs, getIndex, editorClassName } from 'src/common';
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
@@ -30,7 +30,7 @@ const StatusBar = () => {
   } = state;
 
   return (
-    <div className={styles.container}>
+    <div className={[styles.container, editorClassName()].join(' ')}>
       <Link to='/'>
         <DownOutlined style={{ fontSize: rem(40), color: iconColor }}/>
       </Link>

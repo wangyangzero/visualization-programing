@@ -1,13 +1,12 @@
 const mysql = require('mysql');
-const reviewSql = require('./review');
-
 const { 
   createReviewTableSql, 
   insertReviewSql, 
   selectReviewSql, 
   deleteReviewSql, 
   updateReviewLikesSql 
-} = reviewSql;
+} = require('./review');
+const { selectPageLayoutSql } = require('./setting');
 
 // 配置连接数据
 const connection = mysql.createConnection({
@@ -20,6 +19,7 @@ const connection = mysql.createConnection({
 // 创建连接
 connection.connect();
 
+/** 评论 */
 // 创建评论表
 const createReviewTable = () => {
   connection.query(createReviewTableSql, function (err: any, res: any) {
@@ -98,7 +98,39 @@ const updateReviewLikes = (likes: number, reviewId: number) => {
       res(result);
     })
   })
+};
+
+/** 平台 */
+// 获取页面组件的布局情况
+const selectPageLayout = (pageKey: string) => {
+  return new Promise((res, rej) => {
+    connection.query(selectPageLayoutSql, [pageKey], function (error: any, result: any) {
+      if(error) {
+        rej(error);
+      }
+      res(result);
+    });
+  });
+};
+
+// 更新页面组件的布局情况
+const updatePageLayout = (pageKey: string, posList: number[]) => {
+  let sql: string = 'update component set pos = case pos\n';
+  let caseSql: string = '';
+  posList.forEach((item, index) => {
+    caseSql += `when ${index} then ${item}\n`;
+  });
+  sql = sql + caseSql + `end\n where pageKey = ${pageKey}`;
+  return new Promise((res, rej) => {
+    connection.query(sql, function (error: any, result: any) {
+      if(error) {
+        rej(error);
+      }
+      res(result);
+    });
+  });
 }
+
 
 export {};
 module.exports = {
@@ -106,5 +138,7 @@ module.exports = {
   selectReview,
   insertReview,
   deleteReview,
-  updateReviewLikes
+  updateReviewLikes,
+  selectPageLayout,
+  updatePageLayout
 };

@@ -1,4 +1,6 @@
+import React from 'react';
 import EM from 'eventemitter3';
+import styles from './index.module.css';
 import A_LITTLE_STORY from 'src/assets/music/a_little_story.mp3';
 import CANDY_WIND from 'src/assets/music/candy_wind.mp3';
 import INTO_THE_FIRE from 'src/assets/music/into_the_fire.mp3';
@@ -66,7 +68,19 @@ export const em = new EM();
 export const getIndex = (): number => Number(location.pathname.split('=').pop());
 
 // 是开发环境还是生产环境
-export const isDev = (): boolean => process.env.NODE_ENV === 'development';
+export const isDev = (): boolean => {
+  if (process.env.NODE_ENV === 'development') {
+    // 注意：写入脚本时会在未必加入空格，需要清理
+    return process.env.REACT_APP_ENV?.trim() === 'development';
+  }
+  return false;
+}
+
+// 编辑框border的样式，开发环境下展示，生产环境下不展示
+export const editorClassName = (): string => {
+  if(isDev()) return styles.border;
+  return '';
+}
 
 // 歌曲的本地数据
 export const Songs = [

@@ -4,7 +4,7 @@ import { Avatar } from 'antd';
 import { UserOutlined, RightOutlined } from '@ant-design/icons';
 import Tag from './tag';
 import { IUserInfoState } from 'src/type/homepage';
-import { rem } from 'src/common'
+import { rem, editorClassName } from 'src/common'
 import styles from './style.module.css';
 
 const UserInfo = () => {
@@ -29,7 +29,9 @@ const UserInfo = () => {
    } = state;
   
   return (
-    <div className={styles.container}>
+    <div 
+      className={[styles.container, editorClassName()].join(' ')}
+    >
       <Avatar size={avatarSize} icon={<UserOutlined />} className={styles.avatar}/>
       <div className={styles.content}>
         <p className={styles.text} style={{ fontSize: rem(usernameFontSize), color: usernameColor }}>

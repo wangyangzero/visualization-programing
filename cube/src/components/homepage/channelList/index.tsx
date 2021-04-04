@@ -9,6 +9,7 @@ import iconLocal from 'src/assets/img/homepage-local-ic.png';
 import iconCloud from 'src/assets/img/homepage-cloud-ic.png';
 import Channel from './channel';
 import { IChannelListState } from 'src/type/homepage';
+import { editorClassName } from 'src/common';
 import styles from './style.module.css';
 
 const ChannelList = () => {
@@ -28,7 +29,7 @@ const ChannelList = () => {
   const { imgSources, texts } = state;
 
   return (
-    <div className={styles.container}>
+    <div className={[styles.container, editorClassName()].join(' ')}>
       {texts.map((item, index) => (
         <Channel 
           key={item+index} 

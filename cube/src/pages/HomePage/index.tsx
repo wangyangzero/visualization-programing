@@ -19,7 +19,7 @@ const songSheet = [
     text: '可可爱爱莫得脑袋',
     num: '0首',
   }
-]
+];
 
 export default function Homepage(): unknown {
   return (

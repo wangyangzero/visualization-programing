@@ -3,7 +3,7 @@ import React, { memo, useState } from 'react';
 import SongSheet from './songSheet';
 import { ISongSheetListProp, ISongSheetListState } from 'src/type/homepage';
 import { PlusOutlined, MoreOutlined } from '@ant-design/icons';
-import { rem } from 'src/common';
+import { rem, editorClassName } from 'src/common';
 import styles from './style.module.css';
 
 const SongSheetList = (props: ISongSheetListProp) => {
@@ -19,7 +19,7 @@ const SongSheetList = (props: ISongSheetListProp) => {
   const { textColor, textFontSize, iconColor } = state;
 
   return (
-  <div className={styles.container}>
+  <div className={[styles.container, editorClassName()].join(' ')}>
     <header key={key} className={styles.header}>
       <span className={styles.text} style={{fontSize: rem(textFontSize), color: textColor}}>
         {`${name}(${songListNum}个)`}

@@ -80,7 +80,6 @@ const Comment = (props: ICommentProp) => {
    * 点赞
    */
   const thumbUp = () => {
-    console.log('likeNum', likeNum, thumbColor === '');
     if (thumbColor === '') {
       setLikeNum((likeNum || 0) + 1);
       setThumbColor('#8E3830');

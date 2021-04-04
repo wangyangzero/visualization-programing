@@ -2,7 +2,7 @@ import React, { memo, useState } from 'react';
 import { Input } from 'antd';
 import { SmileOutlined } from '@ant-design/icons';
 import { ICommentBoxState, ICommentProp } from 'src/type/review';
-import { rem, getIndex, em, isDev } from 'src/common';
+import { rem, getIndex, em, isDev, editorClassName } from 'src/common';
 import { REVIEW_UPDATE } from 'src/constants';
 import { addReview } from 'src/store/review';
 import styles from './style.module.css';
@@ -39,7 +39,10 @@ const CommentBox = () => {
   }
 
   return (
-    <div className={styles.container} style={{ width: isDev() ? '25vw' : '100vw' }}>
+    <div 
+      className={[styles.container, editorClassName()].join(' ')} 
+      style={{ width: isDev() ? '25vw' : '100vw', left: isDev() ? '37.5vw' : 0 }}
+    >
       <Input 
         placeholder='千头万绪，化成评论一句'
         bordered={false} 

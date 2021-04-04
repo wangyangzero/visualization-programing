@@ -1,7 +1,7 @@
 /** 中间的磁带模块 */
 import React, { memo, useState, useRef, useEffect } from 'react';
 import { IMusicTapeState } from 'src/type/musicInfo';
-import { rem, em, Songs, getIndex } from 'src/common';
+import { rem, em, Songs, getIndex, editorClassName } from 'src/common';
 import { MUSIC_PLAY } from 'src/constants';
 import styles from './style.module.css';
 
@@ -45,7 +45,7 @@ const MusicTape = () => {
   },[])
 
   return (
-    <div className={styles.container}>
+    <div className={[styles.container, editorClassName()].join(' ')}>
       <div 
         className={styles.avatar} 
         style={{ width: rem(avatarSize), height: rem(avatarSize), transform: `rotate(${rotatePos}deg)` }}>

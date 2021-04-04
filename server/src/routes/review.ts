@@ -1,8 +1,7 @@
 const Router = require('koa-router');
-const Sql = require('../sql');
+const { selectReview, insertReview, deleteReview, updateReviewLikes } = require('../sql');
 
 const review = new Router();
-const { selectReview, insertReview, deleteReview, updateReviewLikes } = Sql;
 
 review.get('/', async (ctx: any) => {
   ctx.body = 'welcome to review page!';

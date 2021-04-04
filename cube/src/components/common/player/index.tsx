@@ -4,7 +4,7 @@ import { rem } from 'src/common';
 import { IPlayerState } from 'src/type/homepage';
 import { Progress } from 'antd';
 import { MenuUnfoldOutlined, CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
-import { Songs, isDev } from 'src/common';
+import { Songs, isDev, editorClassName } from 'src/common';
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
@@ -103,7 +103,10 @@ const Player = () => {
 
 
   return (
-    <div className={styles.container} style={{ backgroundColor, width: isDev() ? '25vw' : '100vw' }}>
+    <div 
+      className={[styles.container, editorClassName()].join(' ')} 
+      style={{ backgroundColor, width: isDev() ? '25vw' : '100vw', left: isDev() ? '37.5vw' : 0 }}
+    >
       <div
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
@@ -117,13 +120,15 @@ const Player = () => {
       <div className={styles.info} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         <p 
           style={{ fontSize: rem(titleFontSize), color: titleColor }} 
-          className={styles.title}>
-            {music.name}
+          className={styles.title}
+        >
+          {music.name}
         </p>
         <p
           style={{ fontSize: rem(authorFontSize), color: authorColor }} 
-          className={styles.author}>
-            {`~  ${music.singer}`}
+          className={styles.author}
+        >
+          {`~  ${music.singer}`}
         </p>
       </div>
       </Link>

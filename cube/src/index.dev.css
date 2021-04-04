@@ -21,6 +21,8 @@ html {
 
 body {
   margin: 0;
+  display: flex;
+  flex-direction: row;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif, 'PingFang Bold';
@@ -28,14 +30,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#layout{
+  width: 37.5vw;
+  height: 100vh;
+}
+
 #root{
   width: 25vw;
-  height: 736px;
-  overflow: scroll;
+  height: 100vh;
+  overflow: auto;
 }
 
 #root::-webkit-scrollbar {
   width: 0px;
+}
+
+#design{
+  width: 37.5vw;
+  height: 100vh;
 }
 
 code {

@@ -1,6 +1,7 @@
 .container{
   width: 100%;
   height: 10vh;
+  position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -34,10 +35,10 @@
 
 .playIcon{
   position: absolute;
-  right: 125rem;
+  right: 75rem;
 }
 
 .moreIcon{
   position: absolute;
-  right: 50rem;
+  right: 0rem;
 }

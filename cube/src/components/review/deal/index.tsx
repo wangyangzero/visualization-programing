@@ -2,7 +2,7 @@
 import React, { memo, useState } from 'react';
 import { RightOutlined } from '@ant-design/icons';
 import { IDealState } from 'src/type/review';
-import { rem, Songs, getIndex } from 'src/common';
+import { rem, Songs, getIndex, editorClassName } from 'src/common';
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
@@ -48,7 +48,7 @@ const Deal = () => {
   return (
     <Link to={`music/info=${index}`}>
       <div 
-        className={styles.container}      
+        className={[styles.container, editorClassName()].join(' ')}      
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
         style={{ backgroundColor }}>
