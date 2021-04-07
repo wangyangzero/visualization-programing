@@ -69,7 +69,7 @@ export interface ISongSheetState{
   iconColor: string;  // 歌单右侧图标颜色
 }
 export interface ISongSheetListProp{
-  key: string;  // 用于表示歌单类型
+  keys: string;  // 用于表示歌单类型
   name: string;  // 歌单名称  创建歌单 | 收藏歌单
   songSheet: ISongSheetProp[];  // 歌单数据集
 }

@@ -16,27 +16,29 @@ setting.get('/select', async (ctx: any) => {
     return;
   }
   const { pageKey } = req;
+  console.log(pageKey)
   try{
-    const res: any = await selectPageLayout(pageKey);
+    const data: any = await selectPageLayout(pageKey);
+    const res = data.sort((x: any,y: any) => x.pos - y.pos);
+    console.log(res);
     ctx.status = 200;
     ctx.body = res;
   } catch(e) {
     ctx.status = 404;
-    ctx.body = '查询页面布局配置失败';
+    ctx.body = [];
   };
 });
 
 setting.post('/update', async (ctx: any) => {
   const req = ctx.request?.body;
-
   if(!req) {
     ctx.status = 404;
     ctx.body = '抱歉，更新页面布局配置失败';
     return;
   }
-  const { pageKey, posList } = req;
+  const { pageKey, posList, prePosList } = req;
   try{
-    const res: any = await updatePageLayout(pageKey, posList);
+    const res: any = await updatePageLayout(pageKey, posList, prePosList);
     ctx.status = 200;
     ctx.body = '更新页面布局配置成功';
   } catch(e) {

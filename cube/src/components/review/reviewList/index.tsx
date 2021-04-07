@@ -34,17 +34,22 @@ const ReviewList = () => {
    * 滚动到页面底部
    */
    const scrollToBottom = () => {
-     // 获取页面根节点
+     // 获取组件根节点
      const container: any = document.getElementById('container');
+     // 获取页面根节点
+     const root: any = document.getElementById('root');
     // 页面实际高度
     const pageHeight = container?.scrollHeight || 0;
     // 页面可视高度
-    const clientHeight = container?.clientHeight || 0;
+    const clientHeight = root?.clientHeight || 0;
     // 滚动偏移量
     const scrollOffset = pageHeight - clientHeight;
+    // 首尾固定布局偏移量
+    const initOffset = 300;
+
     // 滚动到最下层，兼容旧版Chrome
-    document.body.scrollTop = scrollOffset;
-    document.documentElement.scrollTop = scrollOffset;
+    document.body.scrollTop = scrollOffset + initOffset;
+    document.documentElement.scrollTop = scrollOffset + initOffset;
   };
 
   /**

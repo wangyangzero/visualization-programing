@@ -1,12 +1,10 @@
 /** 主页： 我的音乐 */
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import { getSetting } from 'src/store';
+import { withComponent } from 'src/common/withComponent';
+import { HOMEPAGE } from 'src/constants';
+import { IComponent } from 'src/type/setting';
 import styles from './style.module.css';
-import UserInfo from 'src/components/homepage/userInfo'
-import ChannelList from 'src/components/homepage/channelList';
-import MyFavoriteMusic from 'src/components/homepage/myFavoriteMusic';
-import Motto from 'src/components/homepage/motto';
-import SongSheetList from 'src/components/homepage/songSheetList';
-import Player from 'src/components/common/player';
 
 const songSheet = [
   {
@@ -22,15 +20,38 @@ const songSheet = [
 ];
 
 export default function Homepage(): unknown {
+
+  const [state, setState] = useState([]);
+
+  useEffect(() => {
+    getSetting('homepage')
+      .then((res) => {
+        if(!res?.length) return;
+        setState(res as any);
+      })
+  },[]);
+
   return (
     <div className={styles.container}>
-      <section><UserInfo /></section>
-      <section><ChannelList /></section>
-      <section><MyFavoriteMusic/></section>
-      <section><Motto/></section>
-      <section><SongSheetList key='create' name='创建歌单' songSheet={songSheet}/></section>
-      <section><SongSheetList key='collect' name='收藏歌单' songSheet={songSheet}/></section>
-      <section><Player/></section>
+      {
+        state.map((item: IComponent, key) => {
+          let props = {};
+          if (item.componentKey === 'songSheetListCreate') {
+            props = {
+              key: 'create',
+              name: '创建歌单',
+              songSheet
+            }
+          } else if (item.componentKey === 'songSheetListCollect') {
+            props = {
+              key: 'collect',
+              name: '收藏歌单',
+              songSheet
+            }
+          }
+          return withComponent(HOMEPAGE[item.componentKey], props, JSON.stringify(item) + key);
+        })
+      }
       <footer className={styles.footer}></footer>
     </div>
   );

@@ -50,7 +50,7 @@ review.get('/select', async (ctx: any) => {
     ctx.body = res;
   } catch(e) {
     ctx.status = 404;
-    ctx.body = '查询评论列表失败';
+    ctx.body = [];
   }
 });
 

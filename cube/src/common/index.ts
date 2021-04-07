@@ -36,7 +36,7 @@ export const rem = (num: number): string => `${num}rem`;
  * 跳转到指定页面
  */
 export const jump = (url: string): void => {
-  document.location.pathname = url;
+  location.pathname = url;
 }
 
 /**
@@ -81,6 +81,8 @@ export const editorClassName = (): string => {
   if(isDev()) return styles.border;
   return '';
 }
+
+// 
 
 // 歌曲的本地数据
 export const Songs = [

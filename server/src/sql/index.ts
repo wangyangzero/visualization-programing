@@ -114,15 +114,16 @@ const selectPageLayout = (pageKey: string) => {
 };
 
 // 更新页面组件的布局情况
-const updatePageLayout = (pageKey: string, posList: number[]) => {
+const updatePageLayout = (pageKey: string, posList: number[], prePosList: number[]) => {
   let sql: string = 'update component set pos = case pos\n';
   let caseSql: string = '';
   posList.forEach((item, index) => {
-    caseSql += `when ${index} then ${item}\n`;
+    caseSql += `when ${prePosList[index]} then ${item}\n`;
   });
-  sql = sql + caseSql + `end\n where pageKey = ${pageKey}`;
+  sql = sql + caseSql + `end\n where pageKey = \"${pageKey}\"`;
   return new Promise((res, rej) => {
     connection.query(sql, function (error: any, result: any) {
+      console.log(error)
       if(error) {
         rej(error);
       }

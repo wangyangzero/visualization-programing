@@ -29,9 +29,7 @@ const UserInfo = () => {
    } = state;
   
   return (
-    <div 
-      className={[styles.container, editorClassName()].join(' ')}
-    >
+    <div className={[styles.container, editorClassName()].join(' ')}>
       <Avatar size={avatarSize} icon={<UserOutlined />} className={styles.avatar}/>
       <div className={styles.content}>
         <p className={styles.text} style={{ fontSize: rem(usernameFontSize), color: usernameColor }}>

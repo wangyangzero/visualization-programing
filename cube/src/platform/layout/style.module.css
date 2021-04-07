@@ -1,5 +1,56 @@
 .container{
   width: 100%;
   height: 100%;
-  background-color: cadetblue;
+  padding: 50rem;
+  background-color: #222;
+}
+
+.instruction{
+  height: 30%;
+  padding: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title{
+  font-family: 'PingFang Bold';
+  font-size: 48rem;
+  color: #ddd;
+}
+
+.content{
+  font-family: 'PingFang Regular';
+  font-size: 32rem;
+  color: #ddd;
+}
+
+.description{
+  font-family: 'PingFang Regular';
+  font-size: 28rem;
+  color: #ddd;
+}
+
+.watermark{
+  align-self: flex-end;
+  font-family: 'PingFang Regular';
+  font-size: 24rem;
+  color: #ddd;
+}
+
+.pageInfo{
+  height: 10%;
+  padding: 30rem;
+}
+
+.build{
+  height: 60%;
+  padding: 30rem;
+}
+
+.progress{
+  margin-top: 60rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -7,7 +7,7 @@ import { rem, editorClassName } from 'src/common';
 import styles from './style.module.css';
 
 const SongSheetList = (props: ISongSheetListProp) => {
-  const { key, name, songSheet } = props;
+  const { keys, name, songSheet } = props;
   const initState: ISongSheetListState = {
     textFontSize: 16,
     textColor: '#3C3C3C',
@@ -20,7 +20,7 @@ const SongSheetList = (props: ISongSheetListProp) => {
 
   return (
   <div className={[styles.container, editorClassName()].join(' ')}>
-    <header key={key} className={styles.header}>
+    <header key={keys} className={styles.header}>
       <span className={styles.text} style={{fontSize: rem(textFontSize), color: textColor}}>
         {`${name}(${songListNum}个)`}
       </span>

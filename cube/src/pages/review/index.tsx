@@ -1,19 +1,28 @@
-import React from 'react';
-import StatusBar from 'src/components/review/statusBar';
-import Deal from 'src/components/review/deal';
-import ReviewStatusBar from 'src/components/review/reviewStatusBar';
-import ReviewList from 'src/components/review/reviewList';
-import CommentBox from 'src/components/review/commentBox'
+import React, { useState, useEffect } from 'react';
+import { getSetting } from 'src/store';
+import { withComponent } from 'src/common/withComponent';
+import { REVIEW } from 'src/constants';
+import { IComponent } from 'src/type/setting';
 import styles from './style.module.css';
 
 export default function Review() {
+
+  const [state, setState] = useState([]);
+
+  useEffect(() => {
+    getSetting('review')
+      .then((res) => {
+        if(!res?.length) return;
+        setState(res as any);
+      })
+  },[]);
+
   return (
     <div className={styles.container}>
-      <header><StatusBar /></header>
-      <section><Deal /></section>
-      <section><ReviewStatusBar /></section>
-      <section><ReviewList /></section>
-      <section><CommentBox /></section>
+      { 
+        state.map((item: IComponent, key) => 
+          withComponent(REVIEW[item.componentKey], {}, JSON.stringify(item) + key))
+      }
       <footer className={styles.footer}></footer>
     </div>
   );
