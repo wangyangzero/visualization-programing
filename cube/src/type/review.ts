@@ -15,7 +15,7 @@ export interface IDealState{
 }
 
 export interface IReviewStatusBarState{
-  title: string;  // 评论区状态标题
+  text: string;  // 评论区状态标题
   recommendText: string;  // 推荐文本
   hotText: string;  // 最热文本
   newText: string;  // 最新文本

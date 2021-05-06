@@ -50,7 +50,11 @@ export function formatSeconds(value: number): string {
   const s = Math.floor((value % 60)) < 10 ? '0' + Math.floor((value % 60)) : Math.floor((value % 60))
   return `${m}:${s}`
 }
-
+/**
+ * 时间戳转日历格式
+ * @param timestamp 时间戳
+ * @returns 
+ */
 export function timestampToTime(timestamp: string | undefined): string {
   if(!timestamp) return '';
   const date =new Date(Number(timestamp));
@@ -82,7 +86,66 @@ export const editorClassName = (): string => {
   return '';
 }
 
-// 
+/**
+ * 更新组件的位置
+ */
+export const updateComponentPos = (prePosList: number[], preIndex: number, newIndex: number) => {
+  const direct = preIndex - newIndex;
+  let posList: number[] = prePosList.slice();
+  posList = posList.map((item) => {
+    // 向前移动
+    if(direct > 0) {
+      if (item === preIndex) {
+        return newIndex;
+      } else if (newIndex <= item && item < preIndex) {
+        return item + 1;
+      }
+    }
+    // 向后移动
+    if(direct < 0) {
+      if (item === preIndex) {
+        return newIndex;
+      } else if (preIndex < item && item <= newIndex) {
+        return item - 1;
+      }
+    }
+    return item;
+  });
+  return posList;
+}
+
+// 页面组件的top / bottom
+// eslint-disable-next-line prefer-const
+export let PageRange = {
+  homepage: [
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+  ],
+  musicInfo: [
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+  ],
+  musicList: [
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+  ],
+  review: [
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+    {top: 0, bottom: 0},
+  ]
+};
 
 // 歌曲的本地数据
 export const Songs = [

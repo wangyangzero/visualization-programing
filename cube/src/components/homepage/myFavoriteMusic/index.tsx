@@ -1,13 +1,18 @@
 /** 我喜欢的音乐模块 */
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useRef, useEffect } from 'react';
 import { Tag } from 'antd';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import { IMyFavoriteMusicState } from 'src/type/homepage';
-import { rem, editorClassName } from 'src/common';
+import { rem, editorClassName, em, PageRange } from 'src/common';
+import { getStyle } from 'src/store/setting';
+import { HOMEPAGE_LAYOUT_CHANGE, GET_STYLE_INFO, UPDATE_STYLE_INFO } from 'src/constants';
+import Draggable from 'react-draggable';
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
-const MyFavoriteMusic = () => {
+const MyFavoriteMusic = (props: any) => {
+  const { index } = props;
+  let ref: any = useRef();
   const initState: IMyFavoriteMusicState = {
     avatarSize: 100,
     avatarUrl: '',
@@ -26,6 +31,9 @@ const MyFavoriteMusic = () => {
     tagTextColor: '',
   }
 
+  // 初始化key值
+  const pageKey = 'homepage';
+  const componentKey = 'myFavoriteMusic';
   const [state, setState] = useState(initState);
   const [backgroundColor, setBackgroundColor] = useState('#19191B');
   const {
@@ -58,39 +66,102 @@ const MyFavoriteMusic = () => {
   const onTouchEnd = () => {
     setBackgroundColor('#161719');
   }
+  /**
+   * 处理拖拽事件
+   * @param e 
+   */
+  const onDragStop = (e: any) => {
+    const posY = e.pageY;
+    const range = PageRange['homepage']
+    let newIndex = index;
+    for(let i = 0;i < range.length; i++) {
+      if (range[i].top <= posY && posY <= range[i].bottom) {
+        newIndex = i;
+        break;
+      }
+    }
+    em.emit(HOMEPAGE_LAYOUT_CHANGE, { preIndex: index, newIndex });
+  }
+
+  const initEditorInfo = (e: any) => {
+    e.preventDefault();
+    em.emit(GET_STYLE_INFO, {
+      pageKey,
+      componentKey,
+      avatarSize,
+      avatarUrl,
+      heartSize,
+      heartColor,
+      text,
+      textFontSize,
+      textColor,
+      num,
+      numFontSize,
+      numColor,
+      tagColor,
+      tagHeartColor,
+      tagText,
+      tagTextFontSize,
+      tagTextColor, 
+    })
+  }
+
+  useEffect(() => {
+    // 获取样式信息
+    getStyle(pageKey, componentKey)
+      .then((res: any) => {
+        setState(res);
+      });
+    // 更新样式信息
+    em.on(UPDATE_STYLE_INFO, (data: any) => {
+      if(data.pageKey === pageKey && data.componentKey === componentKey) {
+        getStyle(pageKey, componentKey)
+        .then((res: any) => {
+          setState(res);
+        });
+      }
+    })
+    // 获取组件在页面的位置
+    PageRange['homepage'][index].top = ref.offsetTop;
+    PageRange['homepage'][index].bottom = ref.offsetTop + ref.offsetHeight;
+  },[])
 
   return (
-    <Link to='/music/list'>
-      <div 
-        className={[styles.container, editorClassName()].join(' ')} 
-        style={{ backgroundColor }}
-        onTouchStart={ onTouchStart }
-        onTouchEnd={ onTouchEnd }
-      >
+    <Draggable onStop={onDragStop}>
+      <Link to='/music/list'>
         <div 
-          className={styles.avatar} 
-          style={{ width: rem(avatarSize), height: rem(avatarSize) }}
+          className={[styles.container, editorClassName()].join(' ')} 
+          style={{ backgroundColor }}
+          onTouchStart={ onTouchStart }
+          onTouchEnd={ onTouchEnd }
+          onContextMenu={ initEditorInfo }
+          ref = {e => {ref = e}}
         >
-          <div className={styles.mask}>
-            <HeartFilled style={{ fontSize: rem(heartSize), color: heartColor }}/>
+          <div 
+            className={styles.avatar} 
+            style={{ width: rem(avatarSize), height: rem(avatarSize) }}
+          >
+            <div className={styles.mask}>
+              <HeartFilled style={{ fontSize: rem(heartSize), color: heartColor }}/>
+            </div>
           </div>
+          <div className={styles.content}>
+            <p className={styles.text} style={{ fontSize: rem(textFontSize), color: textColor }}>
+              {text}
+            </p>
+            <p className={styles.num} style={{ fontSize: rem(numFontSize), color: numColor }}>
+              {num}
+            </p>
+          </div>
+          <Tag color={tagColor} className={styles.tag}>
+            <HeartOutlined style={{color: tagHeartColor}}/>
+            <p className={styles.tagText} style={{ fontSize: rem(tagTextFontSize), color: tagTextColor }}>
+              {tagText}
+            </p>
+          </Tag>
         </div>
-        <div className={styles.content}>
-          <p className={styles.text} style={{ fontSize: rem(textFontSize), color: textColor }}>
-            {text}
-          </p>
-          <p className={styles.num} style={{ fontSize: rem(numFontSize), color: numColor }}>
-            {num}
-          </p>
-        </div>
-        <Tag color={tagColor} className={styles.tag}>
-          <HeartOutlined style={{color: tagHeartColor}}/>
-          <p className={styles.tagText} style={{ fontSize: rem(tagTextFontSize), color: tagTextColor }}>
-            {tagText}
-          </p>
-        </Tag>
-      </div>
-    </Link>
+      </Link>
+    </Draggable>
   )
 }
 

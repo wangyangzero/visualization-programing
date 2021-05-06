@@ -1,15 +1,19 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { ICommentProp, ICommentState } from 'src/type/review';
 import avatarSource from 'src/assets/img/homepage-heart-background-ic.png'
 import { LikeOutlined, DeleteOutlined } from '@ant-design/icons';
 import { rem, timestampToTime, em } from 'src/common';
-import { REVIEW_UPDATE } from 'src/constants';
+import { getStyle } from 'src/store/setting';
+import { REVIEW_UPDATE, GET_STYLE_INFO, UPDATE_STYLE_INFO } from 'src/constants';
 import { deleteReview, updateReviewLikes } from 'src/store';
 import { Popover  } from 'antd';
 import styles from './style.module.css';
 
 const Comment = (props: ICommentProp) => {
   const { avatarUrl, username, dates, likes, msg, reviewId } = props;
+  // 初始化key值
+  const pageKey = 'review';
+  const componentKey = 'comment';     
   const date = timestampToTime(dates);
   const initState: ICommentState = {
     avatarSize: 72,
@@ -91,11 +95,46 @@ const Comment = (props: ICommentProp) => {
     updateReviewLikes((likeNum || 0) - 1, reviewId);
   }
 
+  const initEditorInfo = (e: any) => {
+    e.stopPropagation();
+    e.preventDefault();
+    em.emit(GET_STYLE_INFO, {
+      pageKey,
+      componentKey,
+      avatarSize: 72,
+      usernameFontSize: 26,
+      usernameColor: '#454648',
+      dateFontSize: 16,
+      dateColor: '#444345',
+      likesIconColor: '#454648',
+      msgFontSize: 28,
+      msgColor: '#545557',
+    })
+  }
+
+  useEffect(() => {
+    // 获取样式信息
+    getStyle(pageKey, componentKey)
+      .then((res: any) => {
+        setState(res);
+      });
+    // 更新样式信息
+    em.on(UPDATE_STYLE_INFO, (data: any) => {
+      if(data.pageKey === pageKey && data.componentKey === componentKey) {
+        getStyle(pageKey, componentKey)
+        .then((res: any) => {
+          setState(res);
+        });
+      }
+    })    
+  }, [])
+
   return (
     <div 
       className={styles.container} 
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
+      onContextMenu={initEditorInfo}
       style={{ backgroundColor }}
     >
       <Popover 

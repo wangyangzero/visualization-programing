@@ -1,24 +1,28 @@
 /** 底部播放器模块 */
 import React, { memo, useState, useEffect, useRef } from 'react';
-import { rem } from 'src/common';
-import { IPlayerState } from 'src/type/homepage';
 import { Progress } from 'antd';
 import { MenuUnfoldOutlined, CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
-import { Songs, isDev, editorClassName } from 'src/common';
+import { Songs, isDev, editorClassName, rem, em } from 'src/common';
+import { IPlayerState } from 'src/type/homepage';
+import { getStyle } from 'src/store/setting';
+import { GET_STYLE_INFO, UPDATE_STYLE_INFO } from 'src/constants';
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
 const Player = () => {
   const timerId = useRef(-1);
   const initState: IPlayerState = {
-    avatarSize: 80,
+    avatarSize: 10,
     inlineIconSize: 48,
-    titleFontSize: 24,
-    titleColor: '#595B5B',
-    authorFontSize: 16,
-    authorColor: '#565759',
+    textFontSize: 24,
+    textColor: '#595B5B',
+    singerFontSize: 16,
+    singerColor: '#565759',
     iconColor: '#3C3C3C',
   }
+  // 初始化key值
+  const pageKey = 'common';
+  const componentKey = 'player';
   const [state, setState] = useState(initState);
   //  模块背景色
   const [backgroundColor, setBackgroundColor] = useState('#161719');
@@ -33,10 +37,10 @@ const Player = () => {
   const { 
     avatarSize,
     inlineIconSize,
-    titleFontSize,
-    titleColor,
-    authorFontSize,
-    authorColor,
+    textFontSize,
+    textColor,
+    singerFontSize,
+    singerColor,
     iconColor
   } = state;
 
@@ -95,8 +99,40 @@ const Player = () => {
   const onTouchEnd = () => {
     setBackgroundColor('#161719');
   }
+  /**
+   * 初始化编辑框信息
+   */
+  const initEditorInfo = (e: any) => {
+    e.preventDefault();
+    em.emit(GET_STYLE_INFO,{
+      pageKey,
+      componentKey,
+      avatarSize,
+      inlineIconSize,
+      textFontSize,
+      textColor,
+      singerFontSize,
+      singerColor,
+      iconColor
+    })
+  }
 
   useEffect(() => {
+    // 获取样式信息
+    getStyle(pageKey, componentKey)
+      .then((res: any) => {
+        setState(res);
+      });
+    // 更新样式信息
+    em.on(UPDATE_STYLE_INFO, (data: any) => {
+      if(data.pageKey === pageKey && data.componentKey === componentKey) {
+        getStyle(pageKey, componentKey)
+        .then((res: any) => {
+          setState(res);
+        });
+      }
+    })
+
     // 清除头像旋转定时器
     return () => cancelAnimationFrame(timerId.current);
   },[])
@@ -106,6 +142,7 @@ const Player = () => {
     <div 
       className={[styles.container, editorClassName()].join(' ')} 
       style={{ backgroundColor, width: isDev() ? '25vw' : '100vw', left: isDev() ? '37.5vw' : 0 }}
+      onContextMenu={initEditorInfo}
     >
       <div
         onTouchStart={onTouchStart}
@@ -119,13 +156,13 @@ const Player = () => {
       <Link to={`/music/info=${music.index}`}>
       <div className={styles.info} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         <p 
-          style={{ fontSize: rem(titleFontSize), color: titleColor }} 
+          style={{ fontSize: rem(textFontSize), color: textColor }} 
           className={styles.title}
         >
           {music.name}
         </p>
         <p
-          style={{ fontSize: rem(authorFontSize), color: authorColor }} 
+          style={{ fontSize: rem(singerFontSize), color: singerColor }} 
           className={styles.author}
         >
           {`~  ${music.singer}`}

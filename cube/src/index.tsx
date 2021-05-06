@@ -11,23 +11,17 @@ isDev() ? require('./index.dev.css') : require('./index.pro.css');
 
 if(isDev()) {
   ReactDOM.render(
-    <React.StrictMode>
-      <Layout />
-    </React.StrictMode>,
+      <Layout />,
     document.getElementById('layout')
   );
   ReactDOM.render(
-    <React.StrictMode>
-      <Design />
-    </React.StrictMode>,
+      <Design />,
     document.getElementById('design')
   );
 }
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <App />,
   document.getElementById('root')
 );
 

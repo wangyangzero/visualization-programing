@@ -4,9 +4,9 @@ const {
   insertReviewSql, 
   selectReviewSql, 
   deleteReviewSql, 
-  updateReviewLikesSql 
+  updateReviewLikesSql,
 } = require('./review');
-const { selectPageLayoutSql } = require('./setting');
+const { selectPageLayoutSql, selectPageStyleSql } = require('./setting');
 
 // 配置连接数据
 const connection = mysql.createConnection({
@@ -132,6 +132,43 @@ const updatePageLayout = (pageKey: string, posList: number[], prePosList: number
   });
 }
 
+// 获取页面组件样式
+const selectPageStyles = (pageKey: string, componentKey: string) => {
+
+  return new Promise((res, rej) => {
+    connection.query(selectPageStyleSql, [pageKey, componentKey], function (error: any, result: any) {
+      if(error) {
+        rej(error);
+      }
+      console.log(result);
+      res(result);
+    });
+  });
+};
+
+// 更新页面组件的样式情况
+const updatePageStyles = (props: any) => {
+  let sql: string = 'update styles set \n';
+  let updateSql: string = '';
+  for(let key in props) {
+    if(typeof props[key] === 'string') {
+      updateSql += `${key}=\"${props[key]}\", `;
+    } else {
+      updateSql += `${key}=${props[key]}, `;
+    }
+  } 
+  sql = sql + updateSql.slice(0,updateSql.length-2) + ' ' 
+        + `where pageKey=\"${props['pageKey']}\" and componentKey=\"${props['componentKey']}\"`;
+
+  return new Promise((res, rej) => {
+    connection.query(sql, function (error: any, result: any) {
+      if(error) {
+        rej(error);
+      }
+      res(result);
+    });
+  });
+}
 
 export {};
 module.exports = {
@@ -141,5 +178,7 @@ module.exports = {
   deleteReview,
   updateReviewLikes,
   selectPageLayout,
-  updatePageLayout
+  updatePageLayout,
+  selectPageStyles,
+  updatePageStyles,
 };

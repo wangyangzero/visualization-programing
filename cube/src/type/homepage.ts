@@ -17,7 +17,6 @@ export interface IUserInfoState{
   avatarUrl: string; // 头像来源
   avatarSize: number;  // 头像大小
   arrowColor: string;  // 箭头颜色
-  tags: string[];  // 标签名的集合
 }
 
 export interface IChannelListState{
@@ -72,6 +71,7 @@ export interface ISongSheetListProp{
   keys: string;  // 用于表示歌单类型
   name: string;  // 歌单名称  创建歌单 | 收藏歌单
   songSheet: ISongSheetProp[];  // 歌单数据集
+  index: number;
 }
 
 export interface ISongSheetListState{
@@ -83,9 +83,9 @@ export interface ISongSheetListState{
 export interface IPlayerState{
   avatarSize: number;  // 胶片图标大小
   inlineIconSize: number;  // 胶片内部图片大小
-  titleFontSize: number;  // 标题文案大小
-  titleColor: string;  // 标题文案颜色
-  authorFontSize: number;  // 歌曲数文案大小
-  authorColor: string;  // 歌曲数文案颜色
+  textFontSize: number;  // 标题文案大小
+  textColor: string;  // 标题文案颜色
+  singerFontSize: number;  // 歌曲数文案大小
+  singerColor: string;  // 歌曲数文案颜色
   iconColor: string;  // 播放 & 列表图标颜色
 }

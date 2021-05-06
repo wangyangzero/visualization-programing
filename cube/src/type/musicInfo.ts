@@ -1,8 +1,6 @@
 export interface IStatusBarState{
-  name: string;  // 歌曲名
   nameFontSize: number;  // 歌曲名字体的大小
   nameColor: string;  // 歌曲名字体颜色
-  singer: string;  // 歌手名
   singerFontSize: number;  // 歌手名字体大小
   singerColor: string;  // 歌手名字体颜色
   iconColor: string;  // 图标颜色

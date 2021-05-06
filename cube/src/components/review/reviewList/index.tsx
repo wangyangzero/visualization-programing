@@ -2,11 +2,15 @@ import React, { memo, useState, useEffect, useRef } from 'react';
 import { IReviewListState, ICommentProp } from 'src/type/review';
 import Comment from './comment';
 import { getReviewList } from 'src/store';
-import { em, getIndex, editorClassName } from 'src/common';
+import Draggable from 'react-draggable';
+import { REVIEW_LAYOUT_CHANGE } from 'src/constants';
+import { em, getIndex, editorClassName, PageRange } from 'src/common';
 import styles from './style.module.css';
 import { REVIEW_UPDATE } from 'src/constants';
 
-const ReviewList = () => {
+const ReviewList = (props: any) => {
+  const { index } = props;
+  let ref: any = useRef();
   const initState: IReviewListState = {
     reviews: []
   };
@@ -15,6 +19,23 @@ const ReviewList = () => {
   // 歌曲索引
   const songId = getIndex();  
   const [state, setState] = useState(initState);
+
+  /**
+   * 处理拖拽事件
+   * @param e 
+   */
+   const onDragStop = (e: any) => {
+    const posY = e.pageY;
+    const range = PageRange['review']
+    let newIndex = index;
+    for(let i = 0;i < range.length; i++) {
+      if (range[i].top <= posY && posY <= range[i].bottom) {
+        newIndex = i;
+        break;
+      }
+    }
+    em.emit(REVIEW_LAYOUT_CHANGE, { preIndex: index, newIndex });
+  }
 
   useEffect(() => {
     // 页面初始化时请求评论数据
@@ -28,6 +49,9 @@ const ReviewList = () => {
     em.on(REVIEW_UPDATE, (isReviewUpdate) => {
       isReviewUpdate && updateReviewList();
     })
+    // 获取组件在页面的位置
+    PageRange['review'][index].top = ref.offsetTop;
+    PageRange['review'][index].bottom = ref.offsetTop + ref.clientHeight;    
   },[]);
 
   /**
@@ -70,23 +94,25 @@ const ReviewList = () => {
   const { reviews } = state;
 
   return (
-    <div className={[styles.container, editorClassName()].join(' ')} id="container">
-      {
-        reviews.map((item: ICommentProp, index: number) => (
-          <Comment 
-            key={JSON.stringify(item)+index}
-            reviewId={item.reviewId}
-            avatarUrl={item.avatarUrl}
-            username={item.username}
-            dates={item.dates}
-            likes={item.likes}
-            msg={item.msg}
-            replyId={item.replyId}
-            replyNum={item.replyNum}
-          />
-        ))
-      }
-    </div>
+    <Draggable onStop={onDragStop}>
+      <div className={[styles.container, editorClassName()].join(' ')} id="container" ref={e => {ref = e}}>
+        {
+          reviews.map((item: ICommentProp, index: number) => (
+            <Comment 
+              key={JSON.stringify(item)+index}
+              reviewId={item.reviewId}
+              avatarUrl={item.avatarUrl}
+              username={item.username}
+              dates={item.dates}
+              likes={item.likes}
+              msg={item.msg}
+              replyId={item.replyId}
+              replyNum={item.replyNum}
+            />
+          ))
+        }
+      </div>
+    </Draggable>
   )
 }
 

@@ -1,11 +1,22 @@
+// 服务器地址
+export const BASE_URL = 'http://127.0.0.1:8080';
+
 // 音乐详情页面音乐播放/停止事件
 export const MUSIC_PLAY = 'music-play';
 
-// 评论更新（插入评论，删除评论时触发）
+// 评论更新（插入评论，删除评论时触发）事件
 export const REVIEW_UPDATE = 'review-update';
 
-// 服务器地址
-export const BASE_URL = 'http://127.0.0.1:8080';
+// 获取样式编辑区的信息
+export const GET_STYLE_INFO = 'get_style_info';
+// 更新样式编辑区的信息
+export const UPDATE_STYLE_INFO = 'update_style_info';
+
+// 页面布局改变事件
+export const HOMEPAGE_LAYOUT_CHANGE = "homepage_layout_change";
+export const MUSIC_INFO_LAYOUT_CHANGE = "music_info_layout_change";
+export const MUSIC_LIST_LAYOUT_CHANGE = "music_list_layout_change";
+export const REVIEW_LAYOUT_CHANGE = "review_layout_change";
 
 // 路由替换
 export const ROUTE_PATHNAME: any = {
@@ -70,7 +81,7 @@ import HeadStatusBar from 'src/components/review/statusBar';
 import Deal from 'src/components/review/deal';
 import ReviewStatusBar from 'src/components/review/reviewStatusBar';
 import ReviewList from 'src/components/review/reviewList';
-import CommentBox from 'src/components/review/commentBox'
+import CommentBox from 'src/components/review/commentBox';
 
 export const REVIEW: IObject = {
   statusBar: HeadStatusBar,

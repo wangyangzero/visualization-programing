@@ -1,15 +1,23 @@
 /** 评论页面deal */
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useRef, useEffect } from 'react';
 import { RightOutlined } from '@ant-design/icons';
 import { IDealState } from 'src/type/review';
-import { rem, Songs, getIndex, editorClassName } from 'src/common';
+import Draggable from 'react-draggable';
+import { getStyle } from 'src/store/setting';
+import { REVIEW_LAYOUT_CHANGE, GET_STYLE_INFO, UPDATE_STYLE_INFO } from 'src/constants';
+import { rem, Songs, getIndex, editorClassName , em, PageRange} from 'src/common';
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
-const Deal = () => {
+const Deal = (props: any) => {
+  const { index } = props;
+  let ref: any = useRef();
+  // 初始化key值
+  const pageKey = 'review';
+  const componentKey = 'deal';   
   // 歌曲索引
-  const index = getIndex();  
-  const music = Songs[index];
+  const songIndex = getIndex();  
+  const music = Songs[songIndex];
   const initState: IDealState = {
     avatarSize: 120,
     nameFontSize: 28,
@@ -45,13 +53,83 @@ const Deal = () => {
     setBackgroundColor('#161616');
   }
 
+  /**
+   * 处理拖拽事件
+   * @param e 
+   */
+   const onDragStop = (e: any) => {
+    const posY = e.pageY;
+    const range = PageRange['review']
+    let newIndex = index;
+    for(let i = 0;i < range.length; i++) {
+      if (range[i].top <= posY && posY <= range[i].bottom) {
+        newIndex = i;
+        break;
+      }
+    }
+    em.emit(REVIEW_LAYOUT_CHANGE, { preIndex: index, newIndex });
+  }
+
+  const initEditorInfo = (e: any) => {
+    // 获取样式信息
+    getStyle(pageKey, componentKey)
+      .then((res: any) => {
+        setState(res);
+      });
+    // 更新样式信息
+    em.on(UPDATE_STYLE_INFO, (data: any) => {
+      if(data.pageKey === pageKey && data.componentKey === componentKey) {
+        getStyle(pageKey, componentKey)
+        .then((res: any) => {
+          setState(res);
+        });
+      }
+    })
+    e.stopPropagation();
+    e.preventDefault();
+    em.emit(GET_STYLE_INFO, {
+      pageKey,
+      componentKey,
+      avatarSize: 120,
+      nameFontSize: 28,
+      nameColor: '#595B5B',
+      singerFontSize: 16,
+      singerColor: '#506A90',
+      iconColor: '#595B5B',
+    })
+  }
+
+  useEffect(() => {
+    // 获取样式信息
+    getStyle(pageKey, componentKey)
+      .then((res: any) => {
+        setState(res);
+      });
+    // 更新样式信息
+    em.on(UPDATE_STYLE_INFO, (data: any) => {
+      if(data.pageKey === pageKey && data.componentKey === componentKey) {
+        getStyle(pageKey, componentKey)
+        .then((res: any) => {
+          setState(res);
+        });
+      }
+    })
+    // 获取组件在页面的位置
+    PageRange['review'][index].top = ref.offsetTop;
+    PageRange['review'][index].bottom = ref.offsetTop + ref.offsetHeight;
+  },[])
+
   return (
-    <Link to={`music/info=${index}`}>
-      <div 
-        className={[styles.container, editorClassName()].join(' ')}      
-        onTouchStart={onTouchStart}
-        onTouchEnd={onTouchEnd}
-        style={{ backgroundColor }}>
+    <Draggable onStop={onDragStop}>
+      <Link to={`music/info=${songIndex}`}>
+        <div 
+          className={[styles.container, editorClassName()].join(' ')}      
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+          style={{ backgroundColor }}
+          ref={e => {ref = e}}
+          onContextMenu={initEditorInfo}
+        >
           <img 
             src={music.image}
             className={styles.avatar} 
@@ -66,8 +144,9 @@ const Deal = () => {
             </p>
           </div>
           <RightOutlined style={{ color: iconColor, fontSize: rem(24) }} className={styles.icon}/>
-      </div>
-    </Link>
+        </div>
+      </Link>
+    </Draggable>
   )
 }
 

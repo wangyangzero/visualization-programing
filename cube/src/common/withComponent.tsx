@@ -1,9 +1,8 @@
 import React from 'react';
 
-export const withComponent = (Component: any, props: any, key: string): any => {
-  console.log(Component)
+export const WithComponent = (Component: any, props: any, key: string, index: number): any => {
   return (
   <section key = {key}>
-    <Component {...props}/>
+    <Component {...props} index={index}/>
   </section>)
 }
